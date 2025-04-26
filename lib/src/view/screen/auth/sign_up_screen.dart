@@ -45,12 +45,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   decoration: InputDecoration(
                     hintText: "Name",
                   ),
-                 validator:(value) {
-                    if(value==null || value.isNotEmpty){
+                  validator: (value) {
+                    if (value == null || value.isNotEmpty) {
                       return "Enter Your Name";
                     }
                     return null;
-                 },
+                  },
                 ),
                 SizedBox(
                   height: 10,
@@ -124,6 +124,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _nameETController.dispose();
     super.dispose();
   }
+
   String? validateField({
     required String? value,
     required String fieldType,
@@ -133,7 +134,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
 
     if (fieldType == 'email') {
-
       final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
       if (!emailRegex.hasMatch(value)) {
         return 'Enter a valid email address';
@@ -147,6 +147,5 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
 
     return null;
-
-
+  }
 }
