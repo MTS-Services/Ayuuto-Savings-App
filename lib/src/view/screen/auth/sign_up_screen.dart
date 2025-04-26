@@ -1,20 +1,19 @@
-import 'package:ayuuto_savings_app/src/view/screen/auth/forgot_password_screen.dart';
-import 'package:ayuuto_savings_app/src/view/screen/auth/sign_up_screen.dart';
+import 'package:ayuuto_savings_app/src/view/screen/auth/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
-
+class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController _nameETController = TextEditingController();
   final TextEditingController _emailETController = TextEditingController();
-
+  final TextEditingController _phoneETController = TextEditingController();
   final TextEditingController _passwordETController = TextEditingController();
 
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
@@ -31,13 +30,30 @@ class _SignInScreenState extends State<SignInScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 150,),
+                SizedBox(
+                  height: 150,
+                ),
                 Text(
-                  "Sign In",
+                  "Sign UP",
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 SizedBox(
                   height: 50,
+                ),
+                TextFormField(
+                  controller: _nameETController,
+                  decoration: InputDecoration(
+                    hintText: "Name",
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isNotEmpty) {
+                      return "Enter Your Name";
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 TextFormField(
                   controller: _emailETController,
@@ -46,26 +62,18 @@ class _SignInScreenState extends State<SignInScreen> {
                 SizedBox(
                   height: 10,
                 ),
+                TextFormField(
+                  controller: _phoneETController,
+                  decoration: InputDecoration(hintText: "Phone"),
+                ),
                 SizedBox(
                   height: 10,
                 ),
                 TextFormField(
                   controller: _passwordETController,
-                  decoration: InputDecoration(hintText: "Password"),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Get.to(()=>ForgotPasswordScreen());
-                      },
-                      child: Text(
-                        "Forgot password?",
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                    ),
-                  ],
+                  decoration: InputDecoration(
+                    hintText: "Password",
+                  ),
                 ),
                 SizedBox(
                   height: 50,
@@ -73,15 +81,17 @@ class _SignInScreenState extends State<SignInScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Sing In"),
+                    onPressed: () {
+                      if (_globalKey.currentState!.validate()) {}
+                    },
+                    child: Text("Sing Up"),
                   ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't an account?",
+                      "already have an account?",
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall!
@@ -89,10 +99,10 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.to(()=>SignUpScreen());
+                        Get.to(() => SignInScreen());
                       },
                       child: Text(
-                        "Sing Up",
+                        "Sing In",
                         style: TextStyle(color: Colors.blue),
                       ),
                     )
@@ -109,9 +119,33 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   void dispose() {
     _passwordETController.dispose();
-
+    _phoneETController.dispose();
     _emailETController.dispose();
-
+    _nameETController.dispose();
     super.dispose();
+  }
+
+  String? validateField({
+    required String? value,
+    required String fieldType,
+  }) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your $fieldType';
+    }
+
+    if (fieldType == 'email') {
+      final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+      if (!emailRegex.hasMatch(value)) {
+        return 'Enter a valid email address';
+      }
+    }
+
+    if (fieldType == 'password') {
+      if (value.length < 6) {
+        return 'Password must be at least 6 characters long';
+      }
+    }
+
+    return null;
   }
 }
