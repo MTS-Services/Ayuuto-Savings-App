@@ -1,4 +1,5 @@
 import 'package:ayuuto_savings_app/src/view/screen/auth/sign_in_screen.dart';
+import 'package:ayuuto_savings_app/src/view/screen/HomeScreen/home_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +10,7 @@ class AyuutoSavings extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home:SignInScreen(),
+      home:HomeScreens(),
       theme: ThemeData(
         textTheme: TextTheme(
           bodyMedium: TextStyle(fontSize: 25 , fontWeight: FontWeight.bold),
