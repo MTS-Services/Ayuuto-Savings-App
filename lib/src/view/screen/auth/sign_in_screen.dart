@@ -21,8 +21,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   void initState() {
-    _emailETController.text = "example@gmail.com";
-    _passwordETController.text = "Mdt@123@";
+    _emailETController.text = "shakib501886@gmail.com";
+    _passwordETController.text = "shakib0147@";
     super.initState();
   }
 
@@ -90,6 +90,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     onPressed: () {
                       if (_globalKey.currentState!.validate()) {
                         signIn();
+                        Get.to((){});
                       }
                     },
                     child: Text("Sing In"),
