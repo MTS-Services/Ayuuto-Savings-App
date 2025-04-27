@@ -46,20 +46,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   decoration: const InputDecoration(
                     hintText: "Name",
                   ),
-<<<<<<< HEAD
-                  validator: (value) {
-                    if (value == null || value.isNotEmpty) {
-                      return "Enter Your Name";
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(
-                  height: 10,
-=======
                   validator: (value) =>
                       validateField(value: value, fieldType: "name"),
->>>>>>> 49ed02c0db0761136d91735a855f9ef5d21c9a63
                 ),
                 const SizedBox(height: 10),
 
@@ -165,8 +153,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
 
-<<<<<<< HEAD
-=======
   void signUp() async {
     bool isSignedUp = await _firebaseService.signUpUser(
       email: _emailETController.text.trim(),
@@ -196,7 +182,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
   }
 
->>>>>>> 49ed02c0db0761136d91735a855f9ef5d21c9a63
   String? validateField({
     required String? value,
     required String fieldType,
