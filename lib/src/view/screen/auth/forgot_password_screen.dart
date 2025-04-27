@@ -42,13 +42,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 TextFormField(
                   controller: _emailETController,
                   decoration: InputDecoration(hintText: "Email"),
+                  validator: (value)=>validateField(value: value , fieldType: "email"),
                 ),
                 SizedBox(height: 180),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
+                    if(_globalKey.currentState!.validate()){
                       Get.to(()=>ResetPassword());
+                    }
+
                     },
                     child: Text("Reset Password"),
                   ),
@@ -65,5 +69,28 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   void dispose() {
     _emailETController.dispose();
     super.dispose();
+  }
+  String? validateField({
+    required String? value,
+    required String fieldType,
+  }) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your $fieldType';
+    }
+
+    if (fieldType == 'email') {
+      final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+      if (!emailRegex.hasMatch(value)) {
+        return 'Enter a valid email address';
+      }
+    }
+
+    if (fieldType == 'password') {
+      if (value.length < 6) {
+        return 'Password must be at least 6 characters long';
+      }
+    }
+
+    return null;
   }
 }
