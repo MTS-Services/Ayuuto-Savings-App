@@ -87,9 +87,9 @@ class _ResetPasswordState extends State<ResetPassword> {
         return;
       }
       bool isPasswordChanged = await _firebaseService.changePassword(
-        email: _emailTeController.text.trim(),
         currentPassword: _newPasswordETController.text,
-        newPassword: _confirmPasswordETController.text,
+        newPassword: _confirmPasswordETController.text, email:
+      _emailTeController.text.trim(),
       );
       if (isPasswordChanged) {
         showSnackBarMessage(context, 'Password changed successfully!');

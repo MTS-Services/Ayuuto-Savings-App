@@ -10,25 +10,20 @@ class FirebaseService {
     required String password,
   }) async {
     try {
-
       await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-
-
-      await sendEmailVerification(email);
-      return true;
+      return await sendEmailVerification();
     } on FirebaseAuthException catch (e) {
-      // SignUp - Error Handling
       print('Sign Up Error: ${e.message}');
       return false;
     } catch (e) {
-
       print('Unexpected Error during Sign Up: $e');
       return false;
     }
   }
+
 
   //======================== SignIn =========================
   Future<bool> signInUser({
@@ -62,7 +57,7 @@ class FirebaseService {
   }
 
   //======================== Send Email Verification =========================
-  Future<bool> sendEmailVerification(String email) async {
+  Future<bool> sendEmailVerification() async {
     try {
       User? user = _auth.currentUser;
       if (user != null && !user.emailVerified) {
@@ -76,11 +71,11 @@ class FirebaseService {
     }
   }
 
+
   //======================== Change Password =========================
   Future<bool> changePassword({
-    required String email,
     required String currentPassword,
-    required String newPassword,
+    required String newPassword, required String email,
   }) async {
     try {
       User? user = _auth.currentUser;
@@ -90,23 +85,24 @@ class FirebaseService {
         user = _auth.currentUser;
       }
 
+      if (user != null) {
+        await user.reload();
+        user = _auth.currentUser;
 
-      await user!.reload();
-      user = _auth.currentUser;
+        AuthCredential credential = EmailAuthProvider.credential(
+          email: user!.email!,
+          password: currentPassword,
+        );
 
-      AuthCredential credential = EmailAuthProvider.credential(
-        email: email,
-        password: currentPassword,
-      );
+        await user.reauthenticateWithCredential(credential);
+        await user.updatePassword(newPassword);
 
-
-      await user!.reauthenticateWithCredential(credential);
-
-
-      await user.updatePassword(newPassword);
-
-      print('Password updated successfully.');
-      return true;
+        print('Password updated successfully.');
+        return true;
+      } else {
+        print("User is null, cannot change password");
+        return false;
+      }
     } on FirebaseAuthException catch (e) {
       print('FirebaseAuthException during password change: ${e.message}');
       return false;
@@ -115,6 +111,7 @@ class FirebaseService {
       return false;
     }
   }
+
 
 
 }

@@ -156,7 +156,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void signUp() async {
     bool isSignedUp = await _firebaseService.signUpUser(
       email: _emailETController.text.trim(),
-      password: _passwordETController.text.trim(),
+      password: _passwordETController.text,
     );
 
     if (isSignedUp) {

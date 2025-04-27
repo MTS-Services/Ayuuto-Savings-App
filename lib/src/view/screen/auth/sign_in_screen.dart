@@ -19,13 +19,12 @@ class _SignInScreenState extends State<SignInScreen> {
   late TextEditingController _passwordETController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
-  @override
+@override
   void initState() {
-    _emailETController.text = "example@gmail.com";
-    _passwordETController.text = "Mdt@123@";
+  _emailETController.text = "shakib501886@gmail.com";
+  _passwordETController.text = "shakib0147@";
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -127,9 +126,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   void dispose() {
     _passwordETController.dispose();
-
     _emailETController.dispose();
-
     super.dispose();
   }
 
@@ -143,13 +140,13 @@ class _SignInScreenState extends State<SignInScreen> {
       if (isSignedIn) {
         showSnackBarMessage(context, "Login successful!");
       } else {
-        showSnackBarMessage(context, "Login failed. Please check your credentials.");
+        showSnackBarMessage(
+            context, "Login failed. Please check your credentials.");
       }
     } catch (e) {
       showSnackBarMessage(context, "An error occurred: ${e.toString()}");
     }
   }
-
 
   String? validateField({
     required String? value,

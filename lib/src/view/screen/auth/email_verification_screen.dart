@@ -73,9 +73,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   void send() async {
     try {
-      bool isVerificationSent = await _firebaseService.sendEmailVerification(
-        _emailETController.text,
-      );
+      bool isVerificationSent = await _firebaseService.sendEmailVerification();
 
       if (isVerificationSent) {
         showSnackBarMessage(
