@@ -15,11 +15,17 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final FirebaseService _firebaseService = FirebaseService();
-  final TextEditingController _emailETController = TextEditingController();
-
-  final TextEditingController _passwordETController = TextEditingController();
-
+  late TextEditingController _emailETController = TextEditingController();
+  late TextEditingController _passwordETController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    _emailETController.text = "example@gmail.com";
+    _passwordETController.text = "Mdt@123@";
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
