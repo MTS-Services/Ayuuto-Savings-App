@@ -46,8 +46,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   decoration: const InputDecoration(
                     hintText: "Name",
                   ),
+
+                  validator: (value) {
+                    if (value == null || value.isNotEmpty) {
+                      return "Enter Your Name";
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(
+                  height: 10,
+
                   validator: (value) =>
                       validateField(value: value, fieldType: "name"),
+
                 ),
                 const SizedBox(height: 10),
 
@@ -152,6 +164,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _passwordETController.dispose();
     super.dispose();
   }
+
 
   void signUp() async {
     bool isSignedUp = await _firebaseService.signUpUser(
