@@ -2,7 +2,7 @@ import 'package:ayuuto_savings_app/core/app_colors.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/admin_home_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart' show Iconsax;
 
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
@@ -12,12 +12,12 @@ class NavigationMenu extends StatelessWidget {
     final controller = Get.put(NavigationController());
     return Scaffold(
       bottomNavigationBar: Obx(
-        () => NavigationBar(
+            () => NavigationBar(
           height: 80,
           elevation: 0,
           selectedIndex: controller.selectedIndex.value,
           onDestinationSelected: (value) =>
-              controller.selectedIndex.value = value,
+          controller.selectedIndex.value = value,
           backgroundColor: AppColor.buttonColor,
           labelTextStyle: WidgetStateProperty.all(
             const TextStyle(
@@ -48,7 +48,7 @@ class NavigationMenu extends StatelessWidget {
             ),
             NavigationDestination(
               icon: Icon(
-                Iconsax.wallet_14,
+                Iconsax.wallet_1,
                 color: controller.selectedIndex.value == 2
                     ? Colors.black
                     : Colors.white,

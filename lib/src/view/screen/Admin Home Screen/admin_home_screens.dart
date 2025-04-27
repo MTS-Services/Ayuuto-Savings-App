@@ -6,7 +6,7 @@ import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/widget/
 import 'package:ayuuto_savings_app/src/view/screen/Total%20Group%20Screen/total_group_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart' show Iconsax;
 
 class AdminHomeScreens extends StatelessWidget {
   const AdminHomeScreens({super.key});
@@ -14,17 +14,17 @@ class AdminHomeScreens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> userNames = [
-  "James Kamau",
-  "Sarah Wanjiku",
-  "Michael Odhiambo",
-  "Grace Atieno",
-  "David Mwangi",
-  "Lydia Akinyi",
-  "Peter Kipchoge",
-  "Esther Njeri",
-  "Paul Omondi",
-  "Joyce Adhiambo"
-];
+      "James Kamau",
+      "Sarah Wanjiku",
+      "Michael Odhiambo",
+      "Grace Atieno",
+      "David Mwangi",
+      "Lydia Akinyi",
+      "Peter Kipchoge",
+      "Esther Njeri",
+      "Paul Omondi",
+      "Joyce Adhiambo"
+    ];
     return Scaffold(
       drawer: CustomDrawer(),
       body: SafeArea(

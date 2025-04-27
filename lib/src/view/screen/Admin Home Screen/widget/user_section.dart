@@ -1,6 +1,6 @@
 import 'package:ayuuto_savings_app/core/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class UserSection extends StatelessWidget {
   const UserSection({

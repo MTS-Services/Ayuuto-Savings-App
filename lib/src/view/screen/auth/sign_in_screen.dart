@@ -1,9 +1,11 @@
 import 'package:ayuuto_savings_app/navigation_menu.dart';
-import 'package:ayuuto_savings_app/src/view/screen/auth/forgot_password_screen.dart';
 import 'package:ayuuto_savings_app/src/view/screen/auth/sign_up_screen.dart';
+import 'package:ayuuto_savings_app/src/view/widget/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
+import '../../../model/firebase_service.dart';
+import 'email_verification_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -13,11 +15,18 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final TextEditingController _emailETController = TextEditingController();
-
-  final TextEditingController _passwordETController = TextEditingController();
-
+  final FirebaseService _firebaseService = FirebaseService();
+  late TextEditingController _emailETController = TextEditingController();
+  late TextEditingController _passwordETController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    _emailETController.text = "shakib501886@gmail.com";
+    _passwordETController.text = "shakib0147@";
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +53,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 TextFormField(
                   controller: _emailETController,
                   decoration: InputDecoration(hintText: "Email"),
+                  validator: (value) =>
+                      validateField(value: value, fieldType: 'email'),
                 ),
                 SizedBox(
                   height: 10,
@@ -54,13 +65,15 @@ class _SignInScreenState extends State<SignInScreen> {
                 TextFormField(
                   controller: _passwordETController,
                   decoration: InputDecoration(hintText: "Password"),
+                  validator: (value) =>
+                      validateField(value: value, fieldType: 'password'),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
                       onPressed: () {
-                        Get.to(() => ForgotPasswordScreen());
+                        Get.to(() => EmailVerificationScreen());
                       },
                       child: Text(
                         "Forgot password?",
@@ -76,9 +89,13 @@ class _SignInScreenState extends State<SignInScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Get.to(() => NavigationMenu());
+                      if (_globalKey.currentState!.validate()) {
+                        signIn();
+
+                      }
+
                     },
-                    child: Text("Sign In"),
+                    child: Text("Sing In"),
                   ),
                 ),
                 Row(
@@ -96,7 +113,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         Get.to(() => SignUpScreen());
                       },
                       child: Text(
-                        "Sign Up",
+                        "Sing Up",
                         style: TextStyle(color: Colors.blue),
                       ),
                     )
@@ -117,5 +134,48 @@ class _SignInScreenState extends State<SignInScreen> {
     _emailETController.dispose();
 
     super.dispose();
+  }
+
+  void signIn() async {
+    try {
+      bool isSignedIn = await _firebaseService.signInUser(
+        email: _emailETController.text.trim(),
+        password: _passwordETController.text,
+      );
+
+      if (isSignedIn) {
+        showSnackBarMessage(context, "Login successful!");
+        Get.to(()=>NavigationMenu());
+      } else {
+        showSnackBarMessage(context, "Login failed. Please check your credentials.");
+      }
+    } catch (e) {
+      showSnackBarMessage(context, "An error occurred: ${e.toString()}");
+    }
+  }
+
+
+  String? validateField({
+    required String? value,
+    required String fieldType,
+  }) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your $fieldType';
+    }
+
+    if (fieldType == 'email') {
+      final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+      if (!emailRegex.hasMatch(value)) {
+        return 'Enter a valid email address';
+      }
+    }
+
+    if (fieldType == 'password') {
+      if (value.length < 6) {
+        return 'Password must be at least 6 characters long';
+      }
+    }
+
+    return null;
   }
 }

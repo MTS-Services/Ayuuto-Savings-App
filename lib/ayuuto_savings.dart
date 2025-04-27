@@ -1,4 +1,3 @@
-import 'package:ayuuto_savings_app/navigation_menu.dart';
 import 'package:ayuuto_savings_app/src/view/screen/auth/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,38 +11,42 @@ class AyuutoSavings extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: NavigationMenu(),
+      home: OnboardingScreen(),
       theme: ThemeData(
         scaffoldBackgroundColor: AppColor.themeColor,
         textTheme: _buildTextTheme(),
         elevatedButtonTheme: _buildElevatedButtonThemeData(),
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
+        inputDecorationTheme: _buildInputDecorationTheme(),
+      ),
+    );
+  }
+
+  InputDecorationTheme _buildInputDecorationTheme() {
+    return InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color:AppColor.borderColor) ,
+        ),
+        focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: AppColor.borderColor),
+            borderSide: BorderSide(color:AppColor.borderColor) ,
           ),
-          focusedBorder: OutlineInputBorder(
+         errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: AppColor.borderColor),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.red),
+            borderSide: BorderSide(color:Colors.red) ,
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: AppColor.borderColor),
+            borderSide: BorderSide(color:AppColor.borderColor) ,
           ),
-          contentPadding: EdgeInsets.all(10),
-          hintStyle: TextStyle(
-            color: AppColor.borderColor,
-          ),
+        contentPadding: EdgeInsets.all(10),
+        hintStyle: TextStyle(
+          color: AppColor.borderColor,
         ),
-        cardTheme: CardTheme(
-          color: AppColor.buttonColor,
-        ),
-      ),
-    );
+      errorStyle: TextStyle(
+        fontSize: 12
+      )
+      );
   }
 
   ElevatedButtonThemeData _buildElevatedButtonThemeData() {

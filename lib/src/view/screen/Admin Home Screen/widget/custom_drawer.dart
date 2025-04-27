@@ -2,7 +2,7 @@ import 'package:ayuuto_savings_app/core/app_colors.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Individual%20Group/individual_group.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart' show Iconsax;
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -61,8 +61,8 @@ class CustomDrawer extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       Get.to(() => IndividualGroup(
-                            groupName: groupNames[index],
-                          ));
+                        groupName: groupNames[index],
+                      ));
                     },
                     child: Container(
                       decoration: BoxDecoration(

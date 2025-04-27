@@ -16,7 +16,7 @@ class QuickActionContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: InkWell(
         onTap: () {
-          Get.to(() {});
+
         },
         child: Container(
           height: MediaQuery.sizeOf(context).height * 0.15,
