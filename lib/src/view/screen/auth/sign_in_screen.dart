@@ -1,10 +1,11 @@
-import 'package:ayuuto_savings_app/src/view/screen/auth/email_verification_screen.dart';
+import 'package:ayuuto_savings_app/navigation_menu.dart';
 import 'package:ayuuto_savings_app/src/view/screen/auth/sign_up_screen.dart';
 import 'package:ayuuto_savings_app/src/view/widget/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../model/firebase_service.dart';
+import 'email_verification_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -90,8 +91,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     onPressed: () {
                       if (_globalKey.currentState!.validate()) {
                         signIn();
-                        Get.to((){});
+
                       }
+
                     },
                     child: Text("Sing In"),
                   ),
@@ -143,6 +145,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
       if (isSignedIn) {
         showSnackBarMessage(context, "Login successful!");
+        Get.to(()=>NavigationMenu());
       } else {
         showSnackBarMessage(context, "Login failed. Please check your credentials.");
       }
