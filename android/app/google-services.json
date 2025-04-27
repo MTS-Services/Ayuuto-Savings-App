@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "863070520778",
+    "project_id": "ayuutosavingsapp",
+    "storage_bucket": "ayuutosavingsapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863070520778:android:8823f4e96216e44053bb33",
+        "android_client_info": {
+          "package_name": "com.example.ayuuto_savings_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQWiDa6bX_DmDY0jOXZIELxuVNdL4BVeA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
