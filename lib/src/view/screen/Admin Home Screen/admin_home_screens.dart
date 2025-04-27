@@ -1,8 +1,10 @@
 import 'package:ayuuto_savings_app/core/app_colors.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/widget/custom_card.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/widget/custom_drawer.dart';
-import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/widget/user_section.dart';
+import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/widget/quick_action_container.dart';
+import 'package:ayuuto_savings_app/src/view/screen/Total%20Group%20Screen/total_group_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class AdminHomeScreens extends StatelessWidget {
@@ -10,24 +12,13 @@ class AdminHomeScreens extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> userNames = [
-      "James Maina",
-      "Sarah Wambui",
-      "Michael Ochieng",
-      "Grace Atieno",
-      "David Kamau",
-      "Linda Akinyi",
-      "Robert Mwangi",
-      "Esther Njeri",
-      "Paul Odhiambo",
-      "Joyce Auma"
-    ];
     return Scaffold(
       drawer: CustomDrawer(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,39 +56,76 @@ class AdminHomeScreens extends StatelessWidget {
                 height: 20,
               ),
               //Grid Cards
-              Wrap(
+              Column(
                 spacing: 10,
-                runSpacing: 15,
                 children: [
-                  CustomCard(
-                    icon: Iconsax.people,
-                    text: 'Total Group',
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomCard(
+                        icon: Iconsax.profile_2user,
+                        text: 'Total Group',
+                        num: 8,
+                        onTap: () {
+                          Get.to(() => TotalGroupScreen());
+                        },
+                      ),
+                      CustomCard(
+                          icon: Iconsax.user,
+                          text: 'Total Member',
+                          num: 42,
+                          onTap: () {}),
+                    ],
                   ),
-                  CustomCard(
-                    icon: Iconsax.user_tick,
-                    text: 'Active Group',
-                  ),
-                  CustomCard(
-                    icon: Iconsax.user_add,
-                    text: 'Invite Member',
-                  ),
-                  CustomCard(
-                    icon: Iconsax.profile_2user,
-                    text: 'All Users',
-                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomCard(
+                          icon: Iconsax.calendar,
+                          text: 'Upcomming \nEvent',
+                          num: 12,
+                          onTap: () {}),
+                      CustomCard(
+                          icon: Iconsax.clock,
+                          text: 'Pending \nApprovals',
+                          num: 3,
+                          onTap: () {}),
+                    ],
+                  )
                 ],
               ),
               SizedBox(
                 height: 15,
               ),
-              //Search Box
-              TextFormField(
-                decoration: InputDecoration(hintText: "Search.."),
+              //Quick Actions Tab
+              Text(
+                'Quick Actions',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: AppColor.buttonColor,
+                ),
               ),
               SizedBox(
-                height: 15,
+                height: 10,
               ),
-              UserSection(userNames: userNames),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  QuickActionContainer(
+                    text: 'Create Group',
+                    icon: Iconsax.add_square,
+                  ),
+                  QuickActionContainer(
+                    text: 'View Groups',
+                    icon: Iconsax.profile_2user,
+                  ),
+                  QuickActionContainer(
+                    text: 'Manage\nPayments',
+                    icon: Iconsax.dollar_circle,
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -105,3 +133,4 @@ class AdminHomeScreens extends StatelessWidget {
     );
   }
 }
+

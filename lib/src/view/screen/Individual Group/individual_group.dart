@@ -1,4 +1,5 @@
 import 'package:ayuuto_savings_app/core/app_colors.dart';
+import 'package:ayuuto_savings_app/src/view/screen/Individual%20Group/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -30,6 +31,7 @@ class IndividualGroup extends StatelessWidget {
       'Maya',
       'Adam'
     ];
+
     List<String> dates = [
       '2025-05-01',
       '2025-06-01',
@@ -54,14 +56,7 @@ class IndividualGroup extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          groupName,
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: AppColor.buttonColor,
-        automaticallyImplyLeading: false,
-      ),
+      appBar: CustomAppBar(groupName: groupName),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -94,21 +89,20 @@ class IndividualGroup extends StatelessWidget {
                                   child: Text(
                                     winners[index],
                                     style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-
                           // Vertical Divider
                           Container(
                             height: 30,
                             width: 1,
                             color: Colors.grey,
                           ),
-
                           Expanded(
                             flex: 5,
                             child: Row(
@@ -120,8 +114,9 @@ class IndividualGroup extends StatelessWidget {
                                 Text(
                                   dates[index],
                                   style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ],
                             ),
