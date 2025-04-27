@@ -1,6 +1,4 @@
 import 'package:ayuuto_savings_app/navigation_menu.dart';
-import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/admin_home_screens.dart';
-import 'package:ayuuto_savings_app/src/view/screen/auth/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +11,7 @@ class AyuutoSavings extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: OnboardingScreen(),
+      home: NavigationMenu(),
       theme: ThemeData(
         scaffoldBackgroundColor: AppColor.themeColor,
         textTheme: _buildTextTheme(),

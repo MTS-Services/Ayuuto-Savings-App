@@ -1,8 +1,6 @@
 import 'package:ayuuto_savings_app/src/view/screen/auth/reset_password_screen.dart';
-import 'package:ayuuto_savings_app/src/view/screen/auth/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
