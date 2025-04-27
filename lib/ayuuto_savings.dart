@@ -16,30 +16,37 @@ class AyuutoSavings extends StatelessWidget {
         scaffoldBackgroundColor: AppColor.themeColor,
         textTheme: _buildTextTheme(),
         elevatedButtonTheme: _buildElevatedButtonThemeData(),
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
+        inputDecorationTheme: _buildInputDecorationTheme(),
+      ),
+    );
+  }
+
+  InputDecorationTheme _buildInputDecorationTheme() {
+    return InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color:AppColor.borderColor) ,
+        ),
+        focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(color:AppColor.borderColor) ,
           ),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color:AppColor.borderColor) ,
-            ),
-           errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color:Colors.red) ,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color:AppColor.borderColor) ,
-            ),
-          contentPadding: EdgeInsets.all(10),
-          hintStyle: TextStyle(
-            color: AppColor.borderColor,
-          )
+         errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color:Colors.red) ,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color:AppColor.borderColor) ,
+          ),
+        contentPadding: EdgeInsets.all(10),
+        hintStyle: TextStyle(
+          color: AppColor.borderColor,
         ),
-      ),
-    );
+      errorStyle: TextStyle(
+        fontSize: 12
+      )
+      );
   }
 
   ElevatedButtonThemeData _buildElevatedButtonThemeData() {
