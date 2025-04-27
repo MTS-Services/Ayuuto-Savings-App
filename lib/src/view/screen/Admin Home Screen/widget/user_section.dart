@@ -14,7 +14,7 @@ class UserSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-          itemCount: 10,
+          itemCount: 3   ,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
             return Card(

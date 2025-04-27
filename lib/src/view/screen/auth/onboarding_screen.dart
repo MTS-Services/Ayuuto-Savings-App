@@ -1,3 +1,4 @@
+import 'package:ayuuto_savings_app/src/view/screen/auth/sign_in_screen.dart';
 import 'package:ayuuto_savings_app/src/view/screen/auth/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,29 +18,37 @@ class OnboardingScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          SizedBox(height: 150,),
+            SizedBox(
+              height: 150,
+            ),
             Text("WelCome!", style: Theme.of(context).textTheme.bodyMedium),
             Text("Sign in to your Account",
                 style: Theme.of(context).textTheme.bodySmall),
             Spacer(),
             SizedBox(
-              width:double.infinity,
+              width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => SignInScreen());
+                },
                 child: Text("Sign In"),
               ),
             ),
-            SizedBox(height: 15,),
             SizedBox(
-              width:double.infinity,
+              height: 15,
+            ),
+            SizedBox(
+              width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Get.to(()=>SignUpScreen());
+                  Get.to(() => SignUpScreen());
                 },
                 child: Text("Sign Up"),
               ),
             ),
-            SizedBox(height: 100,)
+            SizedBox(
+              height: 100,
+            )
           ],
         ),
       ),

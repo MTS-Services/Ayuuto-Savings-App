@@ -1,4 +1,5 @@
 import 'package:ayuuto_savings_app/navigation_menu.dart';
+import 'package:ayuuto_savings_app/src/view/screen/auth/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
