@@ -2,9 +2,6 @@ import 'package:ayuuto_savings_app/src/view/screen/auth/sign_in_screen.dart';
 import 'package:ayuuto_savings_app/src/view/screen/auth/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
-import '../../../../core/assetPath.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});

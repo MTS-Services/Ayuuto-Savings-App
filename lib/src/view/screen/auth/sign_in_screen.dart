@@ -1,8 +1,10 @@
-import 'package:ayuuto_savings_app/src/view/screen/auth/forgot_password_screen.dart';
+import 'package:ayuuto_savings_app/src/view/screen/auth/email_verification_screen.dart';
 import 'package:ayuuto_savings_app/src/view/screen/auth/sign_up_screen.dart';
+import 'package:ayuuto_savings_app/src/view/widget/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
+import '../../../model/firebase_service.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -12,7 +14,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-
+  final FirebaseService _firebaseService = FirebaseService();
   final TextEditingController _emailETController = TextEditingController();
 
   final TextEditingController _passwordETController = TextEditingController();
@@ -31,7 +33,9 @@ class _SignInScreenState extends State<SignInScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 150,),
+                SizedBox(
+                  height: 150,
+                ),
                 Text(
                   "Sign In",
                   style: Theme.of(context).textTheme.bodyMedium,
@@ -42,7 +46,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 TextFormField(
                   controller: _emailETController,
                   decoration: InputDecoration(hintText: "Email"),
-                  validator: (value)=>validateField(value: value , fieldType: 'email') ,
+                  validator: (value) =>
+                      validateField(value: value, fieldType: 'email'),
                 ),
                 SizedBox(
                   height: 10,
@@ -53,14 +58,15 @@ class _SignInScreenState extends State<SignInScreen> {
                 TextFormField(
                   controller: _passwordETController,
                   decoration: InputDecoration(hintText: "Password"),
-                  validator: (value)=>validateField(value: value , fieldType: 'password') ,
+                  validator: (value) =>
+                      validateField(value: value, fieldType: 'password'),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
                       onPressed: () {
-                        Get.to(()=>ForgotPasswordScreen());
+                        Get.to(() => EmailVerificationScreen());
                       },
                       child: Text(
                         "Forgot password?",
@@ -76,10 +82,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      if(_globalKey.currentState!.validate()){
-
-
-
+                      if (_globalKey.currentState!.validate()) {
+                        signIn();
                       }
                     },
                     child: Text("Sing In"),
@@ -97,7 +101,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.to(()=>SignUpScreen());
+                        Get.to(() => SignUpScreen());
                       },
                       child: Text(
                         "Sing Up",
@@ -122,6 +126,24 @@ class _SignInScreenState extends State<SignInScreen> {
 
     super.dispose();
   }
+
+  void signIn() async {
+    try {
+      bool isSignedIn = await _firebaseService.signInUser(
+        email: _emailETController.text.trim(),
+        password: _passwordETController.text,
+      );
+
+      if (isSignedIn) {
+        showSnackBarMessage(context, "Login successful!");
+      } else {
+        showSnackBarMessage(context, "Login failed. Please check your credentials.");
+      }
+    } catch (e) {
+      showSnackBarMessage(context, "An error occurred: ${e.toString()}");
+    }
+  }
+
 
   String? validateField({
     required String? value,

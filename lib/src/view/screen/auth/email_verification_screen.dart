@@ -1,20 +1,20 @@
 import 'package:ayuuto_savings_app/src/view/screen/auth/reset_password_screen.dart';
-import 'package:ayuuto_savings_app/src/view/screen/auth/sign_up_screen.dart';
+import 'package:ayuuto_savings_app/src/view/widget/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
-class ForgotPasswordScreen extends StatefulWidget {
-  const ForgotPasswordScreen({super.key});
+import '../../../model/firebase_service.dart';
+
+class EmailVerificationScreen extends StatefulWidget {
+  const EmailVerificationScreen({super.key});
 
   @override
-  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
+  State<EmailVerificationScreen> createState() => _EmailVerificationScreenState();
 }
 
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-
+class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   final TextEditingController _emailETController = TextEditingController();
-
+  final FirebaseService _firebaseService = FirebaseService();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
   @override
@@ -42,17 +42,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 TextFormField(
                   controller: _emailETController,
                   decoration: InputDecoration(hintText: "Email"),
-                  validator: (value)=>validateField(value: value , fieldType: "email"),
+                  validator: (value) =>
+                      validateField(value: value, fieldType: "email"),
                 ),
                 SizedBox(height: 180),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                    if(_globalKey.currentState!.validate()){
-                      Get.to(()=>ResetPassword());
-                    }
-
+                      if (_globalKey.currentState!.validate()) {
+                        send();
+                      }
                     },
                     child: Text("Reset Password"),
                   ),
@@ -70,6 +70,33 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     _emailETController.dispose();
     super.dispose();
   }
+
+  void send() async {
+    try {
+      bool isVerificationSent = await _firebaseService.sendEmailVerification(
+        _emailETController.text,
+      );
+
+      if (isVerificationSent) {
+        showSnackBarMessage(
+          context,
+          "Verification email sent! Please check your inbox.",
+        );
+        Get.to(() => ResetPassword());
+      } else {
+        showSnackBarMessage(
+          context,
+          "Failed to send verification email. Please try again.",
+        );
+      }
+    } catch (e) {
+      showSnackBarMessage(
+        context,
+        "An error occurred: ${e.toString()}",
+      );
+    }
+  }
+
   String? validateField({
     required String? value,
     required String fieldType,

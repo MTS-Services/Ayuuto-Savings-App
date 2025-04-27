@@ -1,9 +1,9 @@
+import 'package:ayuuto_savings_app/src/model/firebase_service.dart';
+import 'package:ayuuto_savings_app/src/view/screen/auth/sign_in_screen.dart';
 
-import 'package:ayuuto_savings_app/src/view/screen/auth/sign_up_screen.dart';
+import 'package:ayuuto_savings_app/src/view/widget/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
@@ -13,10 +13,12 @@ class ResetPassword extends StatefulWidget {
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
-
-  final TextEditingController _newPasswordETController = TextEditingController();
-  final TextEditingController _confirmPasswordETController = TextEditingController();
-
+  final TextEditingController _newPasswordETController =
+      TextEditingController();
+  final TextEditingController _confirmPasswordETController =
+      TextEditingController();
+  final TextEditingController _emailTeController = TextEditingController();
+  final FirebaseService _firebaseService = FirebaseService();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
   @override
@@ -43,11 +45,13 @@ class _ResetPasswordState extends State<ResetPassword> {
                 ),
                 TextFormField(
                   controller: _newPasswordETController,
-                  decoration: InputDecoration(hintText: "New Password"),
+                  decoration: InputDecoration(hintText: "new Password"),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 TextFormField(
-                  controller: _newPasswordETController,
+                  controller: _confirmPasswordETController,
                   decoration: InputDecoration(hintText: "Confirm Password"),
                 ),
                 SizedBox(height: 160),
@@ -55,7 +59,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                       Get.to(()=>SignUpScreen());
+                      resetPassword();
                     },
                     child: Text("Sign In"),
                   ),
@@ -73,5 +77,32 @@ class _ResetPasswordState extends State<ResetPassword> {
     _newPasswordETController.dispose();
     _confirmPasswordETController.dispose();
     super.dispose();
+  }
+
+  void resetPassword() async {
+    try {
+      if (_confirmPasswordETController.text != _newPasswordETController.text) {
+        showSnackBarMessage(
+            context, 'New password and confirm password do not match.');
+        return;
+      }
+      bool isPasswordChanged = await _firebaseService.changePassword(
+        email: _emailTeController.text.trim(),
+        currentPassword: _newPasswordETController.text,
+        newPassword: _confirmPasswordETController.text,
+      );
+      if (isPasswordChanged) {
+        showSnackBarMessage(context, 'Password changed successfully!');
+        Get.to(() => SignInScreen());
+      }
+      if(!isPasswordChanged){
+
+        showSnackBarMessage(
+            context, 'Password change failed. Please try again.');
+
+      }
+    } catch (e) {
+      showSnackBarMessage(context, 'Error: ${e.toString()}');
+    }
   }
 }

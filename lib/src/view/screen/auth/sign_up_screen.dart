@@ -1,7 +1,8 @@
+import 'package:ayuuto_savings_app/src/model/firebase_service.dart';
 import 'package:ayuuto_savings_app/src/view/screen/auth/sign_in_screen.dart';
+import 'package:ayuuto_savings_app/src/view/widget/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -11,9 +12,12 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final FirebaseService _firebaseService = FirebaseService();
+
   final TextEditingController _nameETController = TextEditingController();
   final TextEditingController _emailETController = TextEditingController();
   final TextEditingController _phoneETController = TextEditingController();
+  final TextEditingController _dateOfBirthETController = TextEditingController();
   final TextEditingController _passwordETController = TextEditingController();
 
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
@@ -30,74 +34,91 @@ class _SignUpScreenState extends State<SignUpScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: 150,
-                ),
+                const SizedBox(height: 150),
                 Text(
                   "Sign UP",
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
-                SizedBox(
-                  height: 50,
-                ),
+                const SizedBox(height: 50),
+
                 TextFormField(
                   controller: _nameETController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: "Name",
                   ),
                   validator: (value) =>
                       validateField(value: value, fieldType: "name"),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
+
                 TextFormField(
-                  keyboardType: TextInputType.visiblePassword,
                   controller: _emailETController,
-                  decoration: InputDecoration(hintText: "Email"),
-                  validator: (value) => validateField(
-                    value: value,
-                    fieldType: "email",
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    hintText: "Email",
                   ),
+                  validator: (value) =>
+                      validateField(value: value, fieldType: "email"),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
+
                 TextFormField(
                   controller: _phoneETController,
                   keyboardType: TextInputType.phone,
-                  decoration: InputDecoration(hintText: "Phone"),
+                  decoration: const InputDecoration(
+                    hintText: "Phone",
+                  ),
                   validator: (value) =>
                       validateField(value: value, fieldType: "phone"),
                 ),
-                SizedBox(
-                  height: 10,
+                const SizedBox(height: 10),
+
+                TextFormField(
+                  controller: _dateOfBirthETController,
+                  readOnly: true,
+                  decoration: const InputDecoration(
+                    hintText: "Date of Birth",
+                    suffixIcon: Icon(Icons.calendar_today),
+                  ),
+                  onTap: pickDateOfBirth,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please select your date of birth';
+                    }
+                    return null;
+                  },
                 ),
+                const SizedBox(height: 10),
+
                 TextFormField(
                   controller: _passwordETController,
-                  decoration: InputDecoration(
+                  obscureText: true,
+                  decoration: const InputDecoration(
                     hintText: "Password",
                   ),
                   validator: (value) =>
                       validateField(value: value, fieldType: "password"),
                 ),
-                SizedBox(
-                  height: 50,
-                ),
+                const SizedBox(height: 50),
+
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_globalKey.currentState!.validate()) {}
+                      if (_globalKey.currentState!.validate()) {
+                        signUp();
+                      }
                     },
-                    child: Text("Sing Up"),
+                    child: const Text("Sign Up"),
                   ),
                 ),
+                const SizedBox(height: 20),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "already have an account?",
+                      "Already have an account?",
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall!
@@ -105,9 +126,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.to(() => SignInScreen());
+                        Get.to(() => const SignInScreen());
                       },
-                      child: Text(
+                      child: const Text(
                         "Sign In",
                         style: TextStyle(color: Colors.blue),
                       ),
@@ -124,11 +145,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   void dispose() {
-    _passwordETController.dispose();
-    _phoneETController.dispose();
-    _emailETController.dispose();
     _nameETController.dispose();
+    _emailETController.dispose();
+    _phoneETController.dispose();
+    _dateOfBirthETController.dispose();
+    _passwordETController.dispose();
     super.dispose();
+  }
+
+  void signUp() async {
+    bool isSignedUp = await _firebaseService.signUpUser(
+      email: _emailETController.text.trim(),
+      password: _passwordETController.text.trim(),
+    );
+
+    if (isSignedUp) {
+      showSnackBarMessage(context, "Account created successfully!");
+      Get.to(() => const SignInScreen());
+    } else {
+      showSnackBarMessage(context, "Account creation failed. Please try again.");
+    }
+  }
+
+
+  void pickDateOfBirth() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now().subtract(const Duration(days: 365 * 18)),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+
+    if (pickedDate != null) {
+      _dateOfBirthETController.text =
+      "${pickedDate.year}-${pickedDate.month.toString().padLeft(2, '0')}-${pickedDate.day.toString().padLeft(2, '0')}";
+    }
   }
 
   String? validateField({
