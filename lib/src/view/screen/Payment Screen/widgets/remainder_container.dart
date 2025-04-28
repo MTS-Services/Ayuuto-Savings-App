@@ -1,100 +1,116 @@
 import 'package:flutter/material.dart';
 
 class RemainderContainer extends StatelessWidget {
-  const RemainderContainer({super.key});
+  final String totalAmount;
+  final String savingCircleName;
+  final String membersCount;
+  final String dueAmount;
+  final String dueDate;
+  final String sendReminderText;
+
+  const RemainderContainer({
+    super.key,
+    required this.totalAmount,
+    required this.savingCircleName,
+    required this.membersCount,
+    required this.dueAmount,
+    required this.dueDate,
+    required this.sendReminderText,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 1,
-              blurRadius: 5,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  spacing: 25,
-                  children: [
-                    Text(
-                      '15',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+      padding: const EdgeInsets.only(left: 30, right: 20, top: 20, bottom: 20),
+      margin: const EdgeInsets.only(bottom: 5),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.grey.withOpacity(0.3), width: 1),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    totalAmount,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Saving Circle',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
+                  ),
+                  const SizedBox(width: 25),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        savingCircleName,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
                         ),
-                        Text(
-                          '10 members need to pay',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
+                      ),
+                      Text(
+                        '$membersCount members need to pay',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
                         ),
-                      ],
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Text(
-                      '\$1000',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
                       ),
+                    ],
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    dueAmount,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
                     ),
-                    Text(
-                      'Due May 15',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Row(
-              spacing: 10,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text('Send Reminder',
-                    style: TextStyle(
+                  ),
+                  Text(
+                    dueDate,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  const Icon(
+                    Icons.telegram_rounded,
+                    color: Colors.black,
+                    size: 20,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    sendReminderText,
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
-                    )),
-                Text(
-                  'Mark Paid',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-              ],
-            )
-          ],
-        ));
+                ],
+              ),
+              const SizedBox(width: 35),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

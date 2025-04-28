@@ -27,7 +27,7 @@ class CalenderTileWidget extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: isFirstContainerSelected.value
-                    ? Colors.grey.shade200
+                    ? Colors.grey.shade100
                     : Colors.white,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
@@ -51,7 +51,7 @@ class CalenderTileWidget extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: isSecondContainerSelected.value
-                    ? Colors.grey.shade200
+                    ? Colors.grey.shade100
                     : Colors.white,
                 borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(10),
@@ -62,8 +62,7 @@ class CalenderTileWidget extends StatelessWidget {
                   width: 1,
                 ),
               ),
-              child: const Icon(Iconsax.menu_1,
-                  color: Colors.black, size: 30),
+              child: const Icon(Iconsax.menu_1, color: Colors.black, size: 30),
             ),
           ),
         ],
