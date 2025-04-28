@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
-    required this.groupName,
+    required this.title,
   });
 
-  final String groupName;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: AppColor.buttonColor,
       title: Text(
-        groupName,
+        title,
         style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,

@@ -1,5 +1,6 @@
 import 'package:ayuuto_savings_app/core/app_colors.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/admin_home_screens.dart';
+import 'package:ayuuto_savings_app/src/view/screen/Payment%20Screen/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart' show Iconsax;
@@ -12,12 +13,12 @@ class NavigationMenu extends StatelessWidget {
     final controller = Get.put(NavigationController());
     return Scaffold(
       bottomNavigationBar: Obx(
-            () => NavigationBar(
+        () => NavigationBar(
           height: 80,
           elevation: 0,
           selectedIndex: controller.selectedIndex.value,
           onDestinationSelected: (value) =>
-          controller.selectedIndex.value = value,
+              controller.selectedIndex.value = value,
           backgroundColor: AppColor.buttonColor,
           labelTextStyle: WidgetStateProperty.all(
             const TextStyle(
@@ -30,7 +31,7 @@ class NavigationMenu extends StatelessWidget {
           destinations: [
             NavigationDestination(
               icon: Icon(
-                Iconsax.home,
+                Iconsax.home_copy,
                 color: controller.selectedIndex.value == 0
                     ? Colors.black
                     : Colors.white,
@@ -48,7 +49,7 @@ class NavigationMenu extends StatelessWidget {
             ),
             NavigationDestination(
               icon: Icon(
-                Iconsax.wallet_1,
+                Iconsax.wallet_3_copy,
                 color: controller.selectedIndex.value == 2
                     ? Colors.black
                     : Colors.white,
@@ -78,7 +79,7 @@ class NavigationController extends GetxController {
   final screens = [
     AdminHomeScreens(),
     Container(color: Colors.red),
-    Container(color: Colors.blueAccent),
+    PaymentScreen(),
     Container(color: Colors.yellow),
   ];
 }

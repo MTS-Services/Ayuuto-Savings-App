@@ -57,7 +57,7 @@ class IndividualGroup extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: CustomAppBar(groupName: groupName),
+      appBar: CustomAppBar(title: groupName),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
