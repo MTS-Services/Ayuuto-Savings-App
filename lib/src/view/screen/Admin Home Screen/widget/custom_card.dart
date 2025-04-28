@@ -40,7 +40,7 @@ class CustomCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                   Icon(
@@ -51,7 +51,10 @@ class CustomCard extends StatelessWidget {
               ),
               Text(
                 num.toString(),
-                style: TextStyle(color: Colors.white, fontSize: 25),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600),
               )
             ],
           ),

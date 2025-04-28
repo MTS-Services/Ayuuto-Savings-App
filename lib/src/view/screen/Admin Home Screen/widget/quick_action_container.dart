@@ -1,6 +1,5 @@
 import 'package:ayuuto_savings_app/src/view/screen/create_group/create_group_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class QuickActionContainer extends StatelessWidget {
   const QuickActionContainer({
@@ -40,8 +39,8 @@ class QuickActionContainer extends StatelessWidget {
                 text,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
                   color: Colors.black,
                 ),
               ),
