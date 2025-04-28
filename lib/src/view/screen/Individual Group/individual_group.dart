@@ -55,9 +55,8 @@ class IndividualGroup extends StatelessWidget {
       '2026-11-01',
       '2026-12-01'
     ];
-
     return Scaffold(
-      appBar: CustomAppBar(groupName: groupName),
+      appBar: CustomAppBar(title: ""),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),

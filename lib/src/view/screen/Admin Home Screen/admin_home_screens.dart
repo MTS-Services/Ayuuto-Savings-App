@@ -3,10 +3,12 @@ import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/widget/
 import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/widget/custom_drawer.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/widget/quick_action_container.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/widget/user_section.dart';
-import 'package:ayuuto_savings_app/src/view/screen/Total%20Group%20Screen/total_group_screen.dart';
+import 'package:ayuuto_savings_app/src/view/screen/create_group/create_group_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart' show Iconsax;
+
+import '../manage_group/manage_group_screen.dart';
 
 class AdminHomeScreens extends StatelessWidget {
   const AdminHomeScreens({super.key});
@@ -80,7 +82,7 @@ class AdminHomeScreens extends StatelessWidget {
                         text: 'Total Group',
                         num: 8,
                         onTap: () {
-                          Get.to(() => TotalGroupScreen());
+
                         },
                       ),
                       CustomCard(
@@ -94,6 +96,7 @@ class AdminHomeScreens extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomCard(
+
                           icon: Iconsax.calendar,
                           text: 'Upcomming \nPayments',
                           num: 12,
@@ -126,10 +129,19 @@ class AdminHomeScreens extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   QuickActionContainer(
+                    onTab: () {
+                      Get.to(()=>CreateGroupScreen());
+                    },
                       text: 'Create Group', icon: Iconsax.add_square),
                   QuickActionContainer(
+                    onTab: () {
+
+                    },
                       text: 'View Groups', icon: Iconsax.profile_2user),
                   QuickActionContainer(
+                    onTab: () {
+
+                    },
                       text: 'Manage\nPayments', icon: Iconsax.dollar_circle),
                 ],
               ),
