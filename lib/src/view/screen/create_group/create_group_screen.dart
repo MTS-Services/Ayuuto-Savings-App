@@ -21,7 +21,9 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "Create Group",),
+      appBar: CustomAppBar(title: "Create Group", onTap: (){
+        Get.back();
+      },),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),

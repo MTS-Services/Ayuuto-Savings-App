@@ -119,3 +119,4 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
     );
   }
 }
+

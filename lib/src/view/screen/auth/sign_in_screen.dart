@@ -4,7 +4,7 @@ import 'package:ayuuto_savings_app/src/view/widget/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../model/firebase_service.dart';
+import '../../../model/firebase/firebase_service.dart';
 import 'email_verification_screen.dart';
 
 class SignInScreen extends StatefulWidget {
