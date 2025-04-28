@@ -1,10 +1,11 @@
-import 'package:ayuuto_savings_app/src/view/screen/auth/email_verification_screen.dart';
+import 'package:ayuuto_savings_app/navigation_menu.dart';
 import 'package:ayuuto_savings_app/src/view/screen/auth/sign_up_screen.dart';
 import 'package:ayuuto_savings_app/src/view/widget/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../model/firebase_service.dart';
+import 'email_verification_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -15,14 +16,15 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final FirebaseService _firebaseService = FirebaseService();
+
   late TextEditingController _emailETController = TextEditingController();
   late TextEditingController _passwordETController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
 @override
   void initState() {
-  _emailETController.text = "shakib501886@gmail.com";
-  _passwordETController.text = "shakib0147@";
+    _emailETController.text = "shakib501886@gmail.com";
+    _passwordETController.text = "shakib0147@";
     super.initState();
   }
 
@@ -89,7 +91,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     onPressed: () {
                       if (_globalKey.currentState!.validate()) {
                         signIn();
+
                       }
+
                     },
                     child: Text("Sing In"),
                   ),
@@ -139,6 +143,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
       if (isSignedIn) {
         showSnackBarMessage(context, "Login successful!");
+        Get.to(()=>NavigationMenu());
       } else {
         showSnackBarMessage(
             context, "Login failed. Please check your credentials.");
