@@ -7,6 +7,10 @@ import 'package:ayuuto_savings_app/src/view/widget/my_group_top_card.dart';
 import 'package:ayuuto_savings_app/src/view/widget/my_group_two_container.dart';
 import 'package:ayuuto_savings_app/src/view/widget/payment_progress.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import 'manage_group/manage_group_screen.dart';
 
 class MyGroupScreen extends StatefulWidget {
   const MyGroupScreen({super.key});
@@ -77,13 +81,7 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "My Groups",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge!
-                    .copyWith(fontSize: 35, fontWeight: FontWeight.bold),
-              ),
+
               const SizedBox(height: 20),
               ListView.builder(
                 shrinkWrap: true,
@@ -127,7 +125,9 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                           Expanded(
                             child: ActionButton(
                               title: "Pay Now",
-                              onTap: () {},
+                              onTap: () {
+
+                              },
                               bottomLeft: Radius.circular(10),
                               bottomRight: Radius.zero,
                             ),
@@ -135,7 +135,9 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                           Expanded(
                             child: ActionButton(
                               title: "Details",
-                              onTap: () {},
+                              onTap: () {
+                                Get.to(()=>ManageGroupScreen());
+                              },
                               bottomLeft: Radius.zero,
                               bottomRight: Radius.circular(10),
                             ),
