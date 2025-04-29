@@ -1,5 +1,7 @@
 import 'package:ayuuto_savings_app/src/view/screen/Individual%20Group/widget/custom_appbar.dart';
+import 'package:ayuuto_savings_app/src/view/screen/Payment_Screen/widgets/arrow_container.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Payment_Screen/widgets/calender_tile_widget.dart';
+import 'package:ayuuto_savings_app/src/view/screen/Payment_Screen/widgets/completed_container.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Payment_Screen/widgets/remainder_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -63,59 +65,76 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 ),
               ),
               const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CalenderTileWidget(
+                    isFirstContainerSelected: isFirstContainerSelected,
+                    isSecondContainerSelected: isSecondContainerSelected,
+                  ),
+                  Row(
+                    spacing: 10,
+                    children: [
+                      ArrowContainer(
+                        icon: Icons.arrow_back_ios,
+                      ),
+                      Text('May 2023',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          )),
+                      ArrowContainer(
+                        icon: Icons.arrow_forward_ios,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
               Expanded(
                 child: TabBarView(
                   children: [
                     // For "Upcoming" tab
                     Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            CalenderTileWidget(
-                              isFirstContainerSelected:
-                                  isFirstContainerSelected,
-                              isSecondContainerSelected:
-                                  isSecondContainerSelected,
-                            ),
-                            Row(
-                              spacing: 10,
-                              children: [
-                                ArrowContainer(
-                                  icon: Icons.arrow_back_ios,
-                                ),
-                                Text('May 2023',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    )),
-                                ArrowContainer(
-                                  icon: Icons.arrow_forward_ios,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
                         const SizedBox(height: 20),
                         Expanded(
                           child: ListView.builder(
-                            itemCount: 1, // Number of items in the list
+                            itemCount: 3, // Number of items in the list
                             itemBuilder: (context, index) {
-                              return const RemainderContainer();
+                              return RemainderContainer(
+                                totalAmount: '15',
+                                savingCircleName: 'Saving Circle',
+                                membersCount: '10',
+                                dueAmount: '\$1000',
+                                dueDate: 'Due May 15',
+                                sendReminderText: 'Send Reminder',
+                              );
                             },
                           ),
                         ),
                       ],
                     ),
+
                     // For "Completed" tab (you can use a similar layout for the second tab if needed)
-                    Container(
-                      child: Center(
-                        child: Text('Completed Payments',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            )),
-                      ),
+                    Column(
+                      children: [
+                        const SizedBox(height: 10),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: 3, // Number of items in the list
+                            itemBuilder: (context, index) {
+                              return CompletedContainer(
+                                userName: 'John Doe',
+                                savingCircleInfo:
+                                    'Saving Circle ● May 12, 2023',
+                                amount: '\$500.00',
+                                referenceNumber: '1234567890',
+                                transfermethod: 'Cash',
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -124,30 +143,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class ArrowContainer extends StatelessWidget {
-  const ArrowContainer({
-    super.key,
-    required this.icon,
-  });
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: Colors.grey.shade300,
-          width: 1,
-        ),
-      ),
-      child: Icon(icon, color: Colors.black, size: 20),
     );
   }
 }
