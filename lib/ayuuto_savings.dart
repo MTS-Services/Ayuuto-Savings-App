@@ -40,9 +40,7 @@ class AyuutoSavings extends StatelessWidget {
         borderSide: BorderSide(color: AppColor.borderColor),
       ),
       contentPadding: EdgeInsets.all(10),
-      hintStyle: TextStyle(
-        color: Colors.grey.shade500
-      ),
+      hintStyle: TextStyle(color: Colors.grey.shade500),
       errorStyle: TextStyle(fontSize: 12),
     );
   }

@@ -5,6 +5,7 @@ import 'package:ayuuto_savings_app/src/view/screen/Payment_Screen/widgets/comple
 import 'package:ayuuto_savings_app/src/view/screen/Payment_Screen/widgets/remainder_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
@@ -18,9 +19,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
       true.obs; // Controls color of the first container
   Rx<bool> isSecondContainerSelected =
       false.obs; // Controls color of the second container
+  final RxString selectedDateText =
+      DateFormat('MMMM yyyy').format(DateTime.now()).obs;
 
   @override
   Widget build(BuildContext context) {
+    print(selectedDateText.value);
     return DefaultTabController(
       length: 2, // Number of tabs
       child: Scaffold(
@@ -71,6 +75,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   CalenderTileWidget(
                     isFirstContainerSelected: isFirstContainerSelected,
                     isSecondContainerSelected: isSecondContainerSelected,
+                    selectedDateText: selectedDateText,
                   ),
                   Row(
                     spacing: 10,
@@ -78,10 +83,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       ArrowContainer(
                         icon: Icons.arrow_back_ios,
                       ),
-                      Text('May 2023',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                      Obx(() => Text(
+                            selectedDateText.value,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
                           )),
                       ArrowContainer(
                         icon: Icons.arrow_forward_ios,
