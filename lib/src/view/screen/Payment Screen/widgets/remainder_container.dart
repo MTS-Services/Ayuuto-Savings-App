@@ -89,22 +89,106 @@ class RemainderContainer extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  const Icon(
-                    Icons.telegram_rounded,
-                    color: Colors.black,
-                    size: 20,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    sendReminderText,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
+              InkWell(
+                onTap: () {
+                  // Handle send reminder action here
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        title: Text('Send Payment Reminders'),
+                        content: Column(
+                          mainAxisSize: MainAxisSize
+                              .min, // Important to avoid unnecessary height
+                          children: [
+                            Text(
+                              'Select members to send reminders for\n$savingCircleName.',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w400),
+                            ),
+                            const SizedBox(height: 20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Row(
+                                    children: [
+                                      Checkbox(
+                                        value: false,
+                                        onChanged: (value) {},
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Johnes',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                )),
+                                            Text(
+                                              'Johnes@gmail.com',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              softWrap: true,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Unpaid',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('OK'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.telegram_rounded,
+                      color: Colors.black,
+                      size: 20,
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 8),
+                    Text(
+                      sendReminderText,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(width: 35),
             ],

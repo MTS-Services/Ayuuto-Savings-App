@@ -5,12 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart' show Iconsax;
 
+// Move testMembers here (GLOBAL)
+
+
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
+
     return Scaffold(
       bottomNavigationBar: Obx(
         () => NavigationBar(
@@ -79,7 +83,7 @@ class NavigationController extends GetxController {
   final screens = [
     AdminHomeScreens(),
     Container(color: Colors.red),
-    PaymentScreen(),
+    PaymentScreen(), // Pass your real members here
     Container(color: Colors.yellow),
   ];
 }

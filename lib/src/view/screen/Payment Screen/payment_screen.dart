@@ -101,7 +101,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           child: ListView.builder(
                             itemCount: 3, // Number of items in the list
                             itemBuilder: (context, index) {
-                              return const RemainderContainer(
+                              return RemainderContainer(
                                 totalAmount: '15',
                                 savingCircleName: 'Saving Circle',
                                 membersCount: '10',
