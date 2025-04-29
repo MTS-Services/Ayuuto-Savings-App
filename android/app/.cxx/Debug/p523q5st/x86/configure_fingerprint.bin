@@ -2,6 +2,7 @@ C/C++ Structured LogO
 M
 KC:\src\flutter\packages\flutter_tools\gradle\src\main\groovy\CMakeLists.txtC
 A
+<<<<<<< HEAD
 ?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	ò¡ãŒè2§ ªÃì·ç2Z
 X
 VD:\Ayuuto-Savings-App\android\app\.cxx\Debug\p523q5st\x86\additional_project_files.txt	ò¡ãŒè2 î¡ãŒè2W
@@ -26,3 +27,29 @@ N
 LD:\Ayuuto-Savings-App\android\app\.cxx\Debug\p523q5st\x86\prefab_config.json	ò¡ãŒè2( ñ¡ãŒè2U
 S
 QD:\Ayuuto-Savings-App\android\app\.cxx\Debug\p523q5st\x86\symbol_folder_index.txt	ò¡ãŒè2H ñ¡ãŒè2
+=======
+?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	ø¦íßç2§ ªÃì·ç2Z
+X
+VD:\Ayuuto-Savings-App\android\app\.cxx\Debug\p523q5st\x86\additional_project_files.txt	ø¦íßç2 Î–²¹ç2W
+U
+SD:\Ayuuto-Savings-App\android\app\.cxx\Debug\p523q5st\x86\android_gradle_build.json	ø¦íßç2™ Ï–²¹ç2\
+Z
+XD:\Ayuuto-Savings-App\android\app\.cxx\Debug\p523q5st\x86\android_gradle_build_mini.json	ø¦íßç2ì Ð–²¹ç2I
+G
+ED:\Ayuuto-Savings-App\android\app\.cxx\Debug\p523q5st\x86\build.ninja	ø¦íßç2ñÙ  –²¹ç2M
+K
+ID:\Ayuuto-Savings-App\android\app\.cxx\Debug\p523q5st\x86\build.ninja.txt	ø¦íßç2R
+P
+ND:\Ayuuto-Savings-App\android\app\.cxx\Debug\p523q5st\x86\build_file_index.txt	ø¦íßç2K Ñ–²¹ç2S
+Q
+OD:\Ayuuto-Savings-App\android\app\.cxx\Debug\p523q5st\x86\compile_commands.json	ø¦íßç2	W
+U
+SD:\Ayuuto-Savings-App\android\app\.cxx\Debug\p523q5st\x86\compile_commands.json.bin	ø¦íßç2
+]
+[
+YD:\Ayuuto-Savings-App\android\app\.cxx\Debug\p523q5st\x86\metadata_generation_command.txt	ø¦íßç2” Ñ–²¹ç2P
+N
+LD:\Ayuuto-Savings-App\android\app\.cxx\Debug\p523q5st\x86\prefab_config.json	ø¦íßç2( Ñ–²¹ç2U
+S
+QD:\Ayuuto-Savings-App\android\app\.cxx\Debug\p523q5st\x86\symbol_folder_index.txt	ø¦íßç2H Ñ–²¹ç2
+>>>>>>> b5149fbd2a2d4913e0ca160d00e428395115d9c4

@@ -1,16 +1,15 @@
 import 'package:ayuuto_savings_app/core/app_colors.dart';
 import 'package:ayuuto_savings_app/src/model/group_model.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Individual%20Group/widget/custom_appbar.dart';
-import 'package:ayuuto_savings_app/src/view/widget/action_button.dart';
-import 'package:ayuuto_savings_app/src/view/widget/available_group_card.dart';
-import 'package:ayuuto_savings_app/src/view/widget/my_group_top_card.dart';
-import 'package:ayuuto_savings_app/src/view/widget/my_group_two_container.dart';
-import 'package:ayuuto_savings_app/src/view/widget/payment_progress.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/action_button.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/available_group_card.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/my_group_top_card.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/my_group_two_container.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/payment_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
-import 'manage_group/manage_group_screen.dart';
+import '../manage_group/manage_group_screen.dart';
 
 class MyGroupScreen extends StatefulWidget {
   const MyGroupScreen({super.key});
@@ -98,6 +97,7 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                         status: group.status,
                         backgroundColor: AppColor.themeColor,
                         statusColor: AppColor.activeButton,
+
                       ),
                       Row(
                         children: [
@@ -125,9 +125,7 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                           Expanded(
                             child: ActionButton(
                               title: "Pay Now",
-                              onTap: () {
-
-                              },
+                              onTap: () {},
                               bottomLeft: Radius.circular(10),
                               bottomRight: Radius.zero,
                             ),
