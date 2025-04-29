@@ -24,46 +24,52 @@ class AyuutoSavings extends StatelessWidget {
 
   InputDecorationTheme _buildInputDecorationTheme() {
     return InputDecorationTheme(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color:AppColor.borderColor) ,
-        ),
-        focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color:AppColor.borderColor) ,
-          ),
-         errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color:Colors.red) ,
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color:AppColor.borderColor) ,
-          ),
-        contentPadding: EdgeInsets.all(10),
-        hintStyle: TextStyle(
-          color: AppColor.borderColor,
-        ),
-      errorStyle: TextStyle(
-        fontSize: 12
-      )
-      );
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: AppColor.borderColor),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: AppColor.borderColor),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: Colors.red),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: AppColor.borderColor),
+      ),
+      contentPadding: EdgeInsets.all(10),
+      hintStyle: TextStyle(
+        color: Colors.grey.shade500
+      ),
+      errorStyle: TextStyle(fontSize: 12),
+    );
   }
 
   ElevatedButtonThemeData _buildElevatedButtonThemeData() {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-          backgroundColor: AppColor.buttonColor,
-          foregroundColor: AppColor.themeColor,
-          shape: ContinuousRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          )),
+        backgroundColor: AppColor.buttonColor,
+        foregroundColor: AppColor.themeColor,
+        shape: ContinuousRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+      ),
     );
   }
 
   TextTheme _buildTextTheme() {
     return TextTheme(
-        bodyMedium: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-        bodySmall: TextStyle(fontSize: 16, fontWeight: FontWeight.normal));
+      bodyMedium: TextStyle(
+        fontSize: 25,
+        fontWeight: FontWeight.bold,
+      ),
+      bodySmall: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+      ),
+    );
   }
 }

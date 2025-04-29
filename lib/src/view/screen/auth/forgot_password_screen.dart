@@ -31,7 +31,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   height: 200,
                 ),
                 Text(
-                  "Reset Your Password",
+                  "verification Your email",
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 SizedBox(

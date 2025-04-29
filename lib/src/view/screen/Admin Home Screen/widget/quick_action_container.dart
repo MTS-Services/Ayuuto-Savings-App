@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class QuickActionContainer extends StatelessWidget {
   const QuickActionContainer({
     super.key,
     required this.text,
-    required this.icon,
+    required this.icon, required this.onTab,
   });
   final String text;
   final IconData icon;
+  final Function() onTab;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: InkWell(
-        onTap: () {
-
-        },
+        onTap: onTab,
         child: Container(
           height: MediaQuery.sizeOf(context).height * 0.15,
           width: MediaQuery.sizeOf(context).width * 0.3,
@@ -40,8 +38,8 @@ class QuickActionContainer extends StatelessWidget {
                 text,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
                   color: Colors.black,
                 ),
               ),

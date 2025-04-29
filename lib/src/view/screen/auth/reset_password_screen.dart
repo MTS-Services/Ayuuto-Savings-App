@@ -1,4 +1,4 @@
-import 'package:ayuuto_savings_app/src/model/firebase_service.dart';
+import 'package:ayuuto_savings_app/src/model/firebase/firebase_service.dart';
 import 'package:ayuuto_savings_app/src/view/screen/auth/sign_in_screen.dart';
 
 import 'package:ayuuto_savings_app/src/view/widget/snack_bar_message.dart';
@@ -87,9 +87,9 @@ class _ResetPasswordState extends State<ResetPassword> {
         return;
       }
       bool isPasswordChanged = await _firebaseService.changePassword(
-        email: _emailTeController.text.trim(),
         currentPassword: _newPasswordETController.text,
-        newPassword: _confirmPasswordETController.text,
+        newPassword: _confirmPasswordETController.text, email:
+      _emailTeController.text.trim(),
       );
       if (isPasswordChanged) {
         showSnackBarMessage(context, 'Password changed successfully!');

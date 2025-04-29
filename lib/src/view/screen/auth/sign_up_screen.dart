@@ -1,4 +1,4 @@
-import 'package:ayuuto_savings_app/src/model/firebase_service.dart';
+import 'package:ayuuto_savings_app/src/model/firebase/firebase_service.dart';
 import 'package:ayuuto_savings_app/src/view/screen/auth/sign_in_screen.dart';
 import 'package:ayuuto_savings_app/src/view/widget/snack_bar_message.dart';
 import 'package:flutter/material.dart';
@@ -156,7 +156,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void signUp() async {
     bool isSignedUp = await _firebaseService.signUpUser(
       email: _emailETController.text.trim(),
-      password: _passwordETController.text.trim(),
+      password: _passwordETController.text,
     );
 
     if (isSignedUp) {
