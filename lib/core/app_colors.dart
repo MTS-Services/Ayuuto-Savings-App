@@ -5,4 +5,5 @@ class AppColor{
   static Color  filedColor = Color(0xffd1e6f7);
   static Color  buttonColor = Color(0xff01395e);
   static Color  themeColor = Color(0xffffffff);
+  static Color  activeColor = Color(0xffdcfce7);
 }
