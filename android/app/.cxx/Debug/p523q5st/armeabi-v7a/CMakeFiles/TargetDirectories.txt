@@ -1,2 +1,0 @@
-D:/Ayuuto-Savings-App/android/app/.cxx/Debug/p523q5st/armeabi-v7a/CMakeFiles/edit_cache.dir
-D:/Ayuuto-Savings-App/android/app/.cxx/Debug/p523q5st/armeabi-v7a/CMakeFiles/rebuild_cache.dir

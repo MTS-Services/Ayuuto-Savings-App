@@ -70,7 +70,7 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.backGroundColor,
-      appBar: CustomAppBar(groupName: "My Groups"),
+      appBar: CustomAppBar(title: "My Groups"),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),

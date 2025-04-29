@@ -3,7 +3,7 @@ import 'package:ayuuto_savings_app/src/view/widget/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../model/firebase_service.dart';
+import '../../../model/firebase/firebase_service.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});
@@ -73,9 +73,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   void send() async {
     try {
-      bool isVerificationSent = await _firebaseService.sendEmailVerification(
-        _emailETController.text,
-      );
+      bool isVerificationSent = await _firebaseService.sendEmailVerification();
 
       if (isVerificationSent) {
         showSnackBarMessage(

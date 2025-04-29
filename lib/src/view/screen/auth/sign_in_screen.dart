@@ -4,7 +4,7 @@ import 'package:ayuuto_savings_app/src/view/widget/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../model/firebase_service.dart';
+import '../../../model/firebase/firebase_service.dart';
 import 'email_verification_screen.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -16,17 +16,17 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final FirebaseService _firebaseService = FirebaseService();
+
   late TextEditingController _emailETController = TextEditingController();
   late TextEditingController _passwordETController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
-  @override
+@override
   void initState() {
     _emailETController.text = "shakib501886@gmail.com";
     _passwordETController.text = "shakib0147@";
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -130,9 +130,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   void dispose() {
     _passwordETController.dispose();
-
     _emailETController.dispose();
-
     super.dispose();
   }
 
@@ -147,13 +145,13 @@ class _SignInScreenState extends State<SignInScreen> {
         showSnackBarMessage(context, "Login successful!");
         Get.to(()=>NavigationMenu());
       } else {
-        showSnackBarMessage(context, "Login failed. Please check your credentials.");
+        showSnackBarMessage(
+            context, "Login failed. Please check your credentials.");
       }
     } catch (e) {
       showSnackBarMessage(context, "An error occurred: ${e.toString()}");
     }
   }
-
 
   String? validateField({
     required String? value,
