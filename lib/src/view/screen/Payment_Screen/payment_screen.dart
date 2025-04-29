@@ -1,6 +1,6 @@
 import 'package:ayuuto_savings_app/src/view/screen/Individual%20Group/widget/custom_appbar.dart';
-import 'package:ayuuto_savings_app/src/view/screen/Payment%20Screen/widgets/calender_tile_widget.dart';
-import 'package:ayuuto_savings_app/src/view/screen/Payment%20Screen/widgets/remainder_container.dart';
+import 'package:ayuuto_savings_app/src/view/screen/Payment_Screen/widgets/calender_tile_widget.dart';
+import 'package:ayuuto_savings_app/src/view/screen/Payment_Screen/widgets/remainder_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

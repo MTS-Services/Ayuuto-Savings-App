@@ -1,6 +1,8 @@
 import 'package:ayuuto_savings_app/core/app_colors.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/admin_home_screens.dart';
-import 'package:ayuuto_savings_app/src/view/screen/Payment%20Screen/payment_screen.dart';
+import 'package:ayuuto_savings_app/src/view/screen/Payment_Screen/payment_screen.dart';
+import 'package:ayuuto_savings_app/src/view/screen/manage_group/manage_group_screen.dart';
+import 'package:ayuuto_savings_app/src/view/screen/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart' show Iconsax;
@@ -78,8 +80,8 @@ class NavigationController extends GetxController {
 
   final screens = [
     AdminHomeScreens(),
-    Container(color: Colors.red),
+    ManageGroupScreen(),
     PaymentScreen(),
-    Container(color: Colors.yellow),
+    ProfileScreen()
   ];
 }

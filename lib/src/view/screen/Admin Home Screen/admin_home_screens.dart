@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart' show Iconsax;
 
+import '../manage_group/manage_group_screen.dart';
+
 
 class AdminHomeScreens extends StatelessWidget {
   const AdminHomeScreens({super.key});
@@ -120,7 +122,9 @@ class AdminHomeScreens extends StatelessWidget {
                         text: 'Create Group',
                         icon: Iconsax.add_square),
                     QuickActionContainer(
-                        onTab: () {},
+                        onTab: () {
+                          Get.to(() => ManageGroupScreen());
+                        },
                         text: 'View Groups',
                         icon: Iconsax.profile_2user),
                     QuickActionContainer(
