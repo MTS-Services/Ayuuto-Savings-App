@@ -85,7 +85,6 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                     .copyWith(fontSize: 35, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
-
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -101,7 +100,6 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                         status: group.status,
                         backgroundColor: AppColor.themeColor,
                         statusColor: AppColor.activeButton,
-
                       ),
                       Row(
                         children: [
@@ -149,8 +147,6 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                   );
                 },
               ),
-
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -176,7 +172,6 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                 ],
               ),
               const SizedBox(height: 10),
-
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -186,7 +181,6 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                   return AvailableGroupCard(
                       groupName: available.groupName,
                       roundInfo: available.roundInfo);
-
                 },
               ),
             ],
