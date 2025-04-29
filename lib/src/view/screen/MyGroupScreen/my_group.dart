@@ -1,11 +1,11 @@
 import 'package:ayuuto_savings_app/core/app_colors.dart';
 import 'package:ayuuto_savings_app/src/model/group_model.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Individual%20Group/widget/custom_appbar.dart';
-import 'package:ayuuto_savings_app/src/view/widget/action_button.dart';
-import 'package:ayuuto_savings_app/src/view/widget/available_group_card.dart';
-import 'package:ayuuto_savings_app/src/view/widget/my_group_top_card.dart';
-import 'package:ayuuto_savings_app/src/view/widget/my_group_two_container.dart';
-import 'package:ayuuto_savings_app/src/view/widget/payment_progress.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/action_button.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/available_group_card.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/my_group_top_card.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/my_group_two_container.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/payment_progress.dart';
 import 'package:flutter/material.dart';
 
 class MyGroupScreen extends StatefulWidget {
@@ -77,15 +77,6 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "My Groups",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge!
-                    .copyWith(fontSize: 35, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 20),
-
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -101,7 +92,6 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                         status: group.status,
                         backgroundColor: AppColor.themeColor,
                         statusColor: AppColor.activeButton,
-
                       ),
                       Row(
                         children: [
@@ -149,8 +139,6 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                   );
                 },
               ),
-
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -176,7 +164,6 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                 ],
               ),
               const SizedBox(height: 10),
-
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -186,7 +173,6 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                   return AvailableGroupCard(
                       groupName: available.groupName,
                       roundInfo: available.roundInfo);
-
                 },
               ),
             ],

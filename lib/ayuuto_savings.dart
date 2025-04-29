@@ -1,4 +1,4 @@
-import 'package:ayuuto_savings_app/src/view/screen/my_group.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/my_group.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
