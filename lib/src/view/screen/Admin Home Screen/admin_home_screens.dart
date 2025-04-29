@@ -2,7 +2,6 @@ import 'package:ayuuto_savings_app/core/app_colors.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/widget/custom_card.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/widget/custom_drawer.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/widget/quick_action_container.dart';
-import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/widget/user_section.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Total%20Group%20Screen/total_group_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,7 +22,7 @@ class AdminHomeScreens extends StatelessWidget {
       "Peter Kipchoge",
       "Esther Njeri",
       "Paul Omondi",
-      "Joyce Adhiambo"
+      "Joyce Ambrosia"
     ];
     return Scaffold(
       drawer: CustomDrawer(),
@@ -148,7 +147,6 @@ class AdminHomeScreens extends StatelessWidget {
                 height: 10,
               ),
               //User Section
-              UserSection(userNames: userNames)
             ],
           ),
         ),
