@@ -4,7 +4,6 @@ import 'package:ayuuto_savings_app/src/view/screen/group_details/group_details_s
 import 'package:ayuuto_savings_app/src/view/screen/manage_group/widget/group_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class ManageGroupScreen extends StatefulWidget {
   const ManageGroupScreen({super.key});
@@ -60,9 +59,6 @@ class _ManageGroupScreenState extends State<ManageGroupScreen> {
       appBar: CustomAppBar(
         title: "Manage Group",
         actionIcon: Icons.notifications,
-        onTap:(){
-          Get.back();
-        },
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),

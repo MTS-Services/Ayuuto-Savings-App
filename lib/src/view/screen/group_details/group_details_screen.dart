@@ -26,9 +26,6 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
       appBar: CustomAppBar(
         title: "Group Details",
         actionIcon: Icons.notifications,
-        onTap: () {
-          Get.back();
-        },
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
@@ -38,9 +35,9 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
             Text(
               "Group Name",
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-              ),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
             ),
             SizedBox(height: 15),
             SizedBox(
@@ -87,9 +84,9 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
             Text(
               "Group Members",
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-              ),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
             ),
             Expanded(
               child: ListView.builder(
@@ -119,4 +116,3 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
     );
   }
 }
-
