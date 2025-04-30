@@ -50,7 +50,7 @@ class CustomMemberTile extends StatelessWidget {
       trailing: Container(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
         decoration: BoxDecoration(
-          color: AppColor.activeColor,
+          color: AppColor.activeButton,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
