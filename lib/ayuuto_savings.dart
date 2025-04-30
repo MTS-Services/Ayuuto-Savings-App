@@ -1,4 +1,5 @@
 import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/my_group.dart';
+import 'package:ayuuto_savings_app/src/view/screen/auth/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +12,7 @@ class AyuutoSavings extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyGroupScreen(),
+      home: SignInScreen(),
       theme: ThemeData(
         scaffoldBackgroundColor: AppColor.themeColor,
         textTheme: _buildTextTheme(),
