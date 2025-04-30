@@ -30,8 +30,6 @@ class _ProfileHeaderCardState extends State<ProfileHeaderCard> {
       setState(() {
         _pickedImage = File(pickedFile.path);
       });
-
-      // এখানে চাইলে Firebase বা অন্য কোথাও আপলোডের লজিক দিতে পারো
     }
   }
 

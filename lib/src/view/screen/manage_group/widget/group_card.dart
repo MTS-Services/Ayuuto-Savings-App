@@ -93,7 +93,8 @@ class GroupCard extends StatelessWidget {
               if (!isCompleted)
                 IconButton(
                   style: IconButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     shape: ContinuousRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                       side: BorderSide(
@@ -115,17 +116,19 @@ class GroupCard extends StatelessWidget {
                       Text(
                         "Invite",
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                          color: Colors.black,
-                        ),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Colors.black,
+                            ),
                       ),
                     ],
                   ),
                 ),
-
               if (!isCompleted)
-                Text("Active", style: Theme.of(context).textTheme.bodySmall)
+                InkWell(
+                    onTap: () {},
+                    child: Text("Active",
+                        style: Theme.of(context).textTheme.bodySmall))
               else
                 Text(
                   "Completed",
