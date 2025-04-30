@@ -1,4 +1,3 @@
-import 'package:ayuuto_savings_app/core/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class MyGroupTwoScreen extends StatelessWidget {

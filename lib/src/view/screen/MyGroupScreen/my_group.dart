@@ -7,6 +7,9 @@ import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/my_grou
 import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/my_group_two_container.dart';
 import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/payment_progress.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../manage_group/manage_group_screen.dart';
 
 class MyGroupScreen extends StatefulWidget {
   const MyGroupScreen({super.key});
@@ -77,6 +80,8 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
+              const SizedBox(height: 20),
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -92,6 +97,7 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                         status: group.status,
                         backgroundColor: AppColor.themeColor,
                         statusColor: AppColor.activeButton,
+
                       ),
                       Row(
                         children: [
@@ -127,7 +133,9 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                           Expanded(
                             child: ActionButton(
                               title: "Details",
-                              onTap: () {},
+                              onTap: () {
+                                Get.to(()=>ManageGroupScreen());
+                              },
                               bottomLeft: Radius.zero,
                               bottomRight: Radius.circular(10),
                             ),

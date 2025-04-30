@@ -1,9 +1,8 @@
-import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/my_group.dart';
+import 'package:ayuuto_savings_app/src/view/screen/auth/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'core/app_colors.dart';
-import 'src/view/screen/group/group.dart';
 
 class AyuutoSavings extends StatelessWidget {
   const AyuutoSavings({super.key});
@@ -12,7 +11,7 @@ class AyuutoSavings extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyGroupScreen(),
+      home: OnboardingScreen(),
       theme: ThemeData(
         scaffoldBackgroundColor: AppColor.themeColor,
         textTheme: _buildTextTheme(),
@@ -41,9 +40,7 @@ class AyuutoSavings extends StatelessWidget {
         borderSide: BorderSide(color: AppColor.borderColor),
       ),
       contentPadding: EdgeInsets.all(10),
-      hintStyle: TextStyle(
-        color: Colors.grey.shade500
-      ),
+      hintStyle: TextStyle(color: Colors.grey.shade500),
       errorStyle: TextStyle(fontSize: 12),
     );
   }

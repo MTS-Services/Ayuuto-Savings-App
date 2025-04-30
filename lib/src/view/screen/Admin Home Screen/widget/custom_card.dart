@@ -4,20 +4,17 @@ import 'package:flutter/material.dart';
 class CustomCard extends StatelessWidget {
   const CustomCard({
     super.key,
-    required this.icon,
+    this.icon,
     required this.text,
-    required this.onTap,
     required this.num,
   });
-  final IconData icon;
+  final IconData? icon;
   final String text;
-  final int num;
-  final Function()? onTap;
+  final String num;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
       child: Container(
         height: MediaQuery.sizeOf(context).height * 0.13,
         width: MediaQuery.sizeOf(context).width * 0.45,
@@ -38,9 +35,9 @@ class CustomCard extends StatelessWidget {
                     text,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       color: Colors.white,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   Icon(

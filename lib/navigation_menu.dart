@@ -86,6 +86,6 @@ class NavigationController extends GetxController {
     AdminHomeScreens(),
     ManageGroupScreen(),
     PaymentScreen(),
-    ProfileScreen()
+    ProfileScreen(),
   ];
 }

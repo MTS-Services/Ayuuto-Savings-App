@@ -24,7 +24,6 @@ class FirebaseService {
     }
   }
 
-
   //======================== SignIn =========================
   Future<bool> signInUser({
     required String email,
@@ -71,11 +70,11 @@ class FirebaseService {
     }
   }
 
-
   //======================== Change Password =========================
   Future<bool> changePassword({
     required String currentPassword,
-    required String newPassword, required String email,
+    required String newPassword,
+    required String email,
   }) async {
     try {
       User? user = _auth.currentUser;
@@ -111,7 +110,4 @@ class FirebaseService {
       return false;
     }
   }
-
-
-
 }

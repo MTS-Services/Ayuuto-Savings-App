@@ -9,15 +9,15 @@ class CalenderTileWidget extends StatelessWidget {
     super.key,
     required this.isFirstContainerSelected,
     required this.isSecondContainerSelected,
+    required this.selectedDateText,
   });
 
   final Rx<bool> isFirstContainerSelected;
   final Rx<bool> isSecondContainerSelected;
-  
+  final RxString selectedDateText;
 
   @override
   Widget build(BuildContext context) {
-    
     return Obx(
       () => Row(
         children: [
@@ -32,9 +32,11 @@ class CalenderTileWidget extends StatelessWidget {
                 lastDate: DateTime(2101),
               );
               // If a date is selected, print it (or use it in your app)
-               if (selectedDate != null) {
-                final formattedDate = DateFormat('MMMM yyyy').format(selectedDate);
-                print("Selected date: $formattedDate"); // e.g., May 2023
+              if (selectedDate != null) {
+                final formattedDate =
+                    DateFormat('MMMM yyyy').format(selectedDate);
+
+                selectedDateText.value = formattedDate;
               }
             },
             child: Container(
