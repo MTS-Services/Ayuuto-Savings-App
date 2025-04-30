@@ -10,7 +10,6 @@ import 'package:iconsax_flutter/iconsax_flutter.dart' show Iconsax;
 
 import '../manage_group/manage_group_screen.dart';
 
-
 class AdminHomeScreens extends StatelessWidget {
   const AdminHomeScreens({super.key});
 
@@ -70,29 +69,28 @@ class AdminHomeScreens extends StatelessWidget {
                         CustomCard(
                           icon: Iconsax.profile_2user,
                           text: 'Total Group',
-                          num: 8,
-                          onTap: () {},
+                          num: '8',
                         ),
                         CustomCard(
-                            icon: Iconsax.user,
-                            text: 'Total Member',
-                            num: 42,
-                            onTap: () {}),
+                          icon: Iconsax.user,
+                          text: 'Total Member',
+                          num: '42',
+                        ),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomCard(
-                            icon: Iconsax.calendar,
-                            text: 'Upcomming \nPayments',
-                            num: 12,
-                            onTap: () {}),
+                          icon: Iconsax.calendar,
+                          text: 'Upcomming \nPayments',
+                          num: '12',
+                        ),
                         CustomCard(
-                            icon: Iconsax.clock,
-                            text: 'Complete \nPayments',
-                            num: 3,
-                            onTap: () {}),
+                          icon: Iconsax.clock,
+                          text: 'Complete \nPayments',
+                          num: '3',
+                        ),
                       ],
                     )
                   ],
