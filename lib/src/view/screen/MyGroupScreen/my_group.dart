@@ -122,23 +122,19 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                       ),
                       Row(
                         children: [
-                          Expanded(
-                            child: ActionButton(
-                              title: "Pay Now",
-                              onTap: () {},
-                              bottomLeft: Radius.circular(10),
-                              bottomRight: Radius.zero,
-                            ),
+                          ActionButton(
+                            title: "Pay Now",
+                            onTap: () {},
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.zero,
                           ),
-                          Expanded(
-                            child: ActionButton(
-                              title: "Details",
-                              onTap: () {
-                                Get.to(()=>ManageGroupScreen());
-                              },
-                              bottomLeft: Radius.zero,
-                              bottomRight: Radius.circular(10),
-                            ),
+                          ActionButton(
+                            title: "Details",
+                            onTap: () {
+                              Get.to(()=>ManageGroupScreen());
+                            },
+                            bottomLeft: Radius.zero,
+                            bottomRight: Radius.circular(10),
                           ),
                         ],
                       ),
