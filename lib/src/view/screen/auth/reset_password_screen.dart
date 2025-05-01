@@ -17,7 +17,6 @@ class _ResetPasswordState extends State<ResetPassword> {
       TextEditingController();
   final TextEditingController _confirmPasswordETController =
       TextEditingController();
-  final TextEditingController _emailTeController = TextEditingController();
   final FirebaseService _firebaseService = FirebaseService();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
@@ -59,7 +58,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      resetPassword();
+                      // resetPassword();
                     },
                     child: Text("Sign In"),
                   ),
@@ -88,8 +87,7 @@ class _ResetPasswordState extends State<ResetPassword> {
       }
       bool isPasswordChanged = await _firebaseService.changePassword(
         currentPassword: _newPasswordETController.text,
-        newPassword: _confirmPasswordETController.text, email:
-      _emailTeController.text.trim(),
+        newPassword: _confirmPasswordETController.text,
       );
       if (isPasswordChanged) {
         showSnackBarMessage(context, 'Password changed successfully!');
@@ -104,5 +102,5 @@ class _ResetPasswordState extends State<ResetPassword> {
     } catch (e) {
       showSnackBarMessage(context, 'Error: ${e.toString()}');
     }
-  }
+   }
 }
