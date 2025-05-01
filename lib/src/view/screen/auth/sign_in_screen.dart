@@ -17,11 +17,12 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final FirebaseService _firebaseService = FirebaseService();
 
-  late TextEditingController _emailETController = TextEditingController();
-  late TextEditingController _passwordETController = TextEditingController();
+  late final TextEditingController _emailETController = TextEditingController();
+  late final TextEditingController _passwordETController =
+      TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
-@override
+  @override
   void initState() {
     _emailETController.text = "mdtayobalideveloper@gmail.com";
     _passwordETController.text = "mdt@123@";
@@ -92,7 +93,6 @@ class _SignInScreenState extends State<SignInScreen> {
                       if (_globalKey.currentState!.validate()) {
                         signIn();
                       }
-
                     },
                     child: Text("Sing In"),
                   ),
@@ -141,8 +141,25 @@ class _SignInScreenState extends State<SignInScreen> {
       );
 
       if (isSignedIn) {
-        showSnackBarMessage(context, "Login successful!");
-        Get.to(()=>NavigationMenu());
+        final user = _firebaseService.auth.currentUser;
+
+        if (user != null) {
+          final userDoc = await _firebaseService.firestore
+              .collection('users')
+              .doc(user.uid)
+              .get();
+
+          final data = userDoc.data();
+          print("📄 Firestore data: $data");
+          final role = userDoc.data()?['role'] ?? 'member';
+
+          showSnackBarMessage(context, "Login successful!");
+          print("✅ Signed in as: ${user.email}");
+          print(
+              "📦 Retrieved role from Firestore: $role (${userDoc.data()?['role']})");
+
+          Get.to(() => NavigationMenu(userRole: role));
+        }
       } else {
         showSnackBarMessage(
             context, "Login failed. Please check your credentials.");
