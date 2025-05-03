@@ -1,4 +1,3 @@
-import 'package:ayuuto_savings_app/src/view/controller/user_Id_Controller.dart';
 import 'package:ayuuto_savings_app/src/view/controller/usercreatecontroller/create_user_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,7 +10,7 @@ class FirebaseService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   
   final CreateController _createController = Get.put(CreateController());
-  final UserIdController _userIdController = Get.put(UserIdController());
+
 
   // === Getters ===
   FirebaseAuth get auth => _auth;
@@ -36,9 +35,6 @@ class FirebaseService {
 
       if (user != null) {
         await user.sendEmailVerification();
-
-        _userIdController.setUid(user.uid);
-
         _createController.createUser(
           uid: user.uid,
           name: name,

@@ -1,9 +1,10 @@
-import 'package:ayuuto_savings_app/src/view/controller/user_Id_Controller.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Individual%20Group/widget/custom_appbar.dart';
 import 'package:ayuuto_savings_app/src/view/screen/manage_group/manage_group_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controller/creategroupcontroller/group_create_model.dart';
+import '../../controller/creategroupcontroller/group_create_controller.dart';
+
 
 class CreateGroupScreen extends StatefulWidget {
   const CreateGroupScreen({super.key});
@@ -14,7 +15,7 @@ class CreateGroupScreen extends StatefulWidget {
 
 class _CreateGroupScreenState extends State<CreateGroupScreen> {
   final GroupCreateController _groupCreateController = Get.put(GroupCreateController());
-  final UserIdController _userIdController = Get.put(UserIdController());
+   final FirebaseAuth  _auth =  FirebaseAuth.instance;
 
   final TextEditingController _groupNameTEController = TextEditingController();
   final TextEditingController _amountTEController = TextEditingController();
@@ -26,8 +27,10 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
 
   final List<String> _frequencies = ["  WEEKLY", "BI_WEEKLY", "MONTHLY", ];
 
+
   @override
   Widget build(BuildContext context) {
+    print("UserID = ${_auth.currentUser!.uid}");
     return Scaffold(
       appBar: CustomAppBar(title: "Create Group"),
       body: SingleChildScrollView(
@@ -69,7 +72,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                         "Frequency",
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w300,
                         ),
                       ),
                     ),
@@ -135,25 +138,34 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                 const SizedBox(height: 20),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (_globalKey.currentState!.validate()) {
-                        _groupCreateController.groupCreate(
-                          adminUserId: _userIdController.uid.value.trim(),
-                          groupName: _groupNameTEController.text.trim(),
-                          contributionAmount: int.parse(_amountTEController.text.trim()),
-                          frequency: _frequencyTEController.text.trim(),
-                          maxMembers: int.parse(_maximumTEController.text.trim()),
-                          description: _descriptionNameTEController.text.trim(),
-                          context: context,
-                        ).then((_) {
-                          Get.to(() => ManageGroupScreen());
-                        });
+                  child: Obx(
+                        () {
+                      if (_groupCreateController.isLoading.value) {
+                        return Center(child: CircularProgressIndicator());
+                      } else {
+                        return ElevatedButton(
+                          onPressed: () {
+                            if (_globalKey.currentState!.validate()) {
+                              _groupCreateController.groupCreate(
+                                adminUserId: _auth.currentUser!.uid,
+                                groupName: _groupNameTEController.text.trim(),
+                                contributionAmount: int.parse(_amountTEController.text.trim()),
+                                frequency: _frequencyTEController.text.trim(),
+                                maxMembers: int.parse(_maximumTEController.text.trim()),
+                                description: _descriptionNameTEController.text.trim(),
+                                context: context,
+                              ).then((_) {
+                                Get.to(() => ManageGroupScreen());
+                              });
+                            }
+                          },
+                          child: const Text("Create Group"),
+                        );
                       }
                     },
-                    child: const Text("Create Group"),
                   ),
-                ),
+                )
+
               ],
             ),
           ),

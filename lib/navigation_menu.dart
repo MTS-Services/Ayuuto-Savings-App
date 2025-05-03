@@ -29,13 +29,13 @@ class NavigationMenu extends StatelessWidget {
           onDestinationSelected: (value) =>
               controller.selectedIndex.value = value,
           backgroundColor: AppColor.buttonColor,
-          labelTextStyle: WidgetStateProperty.all(
-            const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-            ),
-          ),
+          // labelTextStyle: WidgetStateProperty.all(
+          //   const TextStyle(
+          //     fontSize: 12,
+          //     fontWeight: FontWeight.w500,
+          //     color: Colors.white,
+          //   ),
+          // ),
           indicatorColor: Colors.white,
           destinations: [
             NavigationDestination(
