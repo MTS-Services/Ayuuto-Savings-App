@@ -1,57 +1,32 @@
-
-import 'package:ayuuto_savings_app/src/view/screen/Individual%20Group/widget/custom_appbar.dart';
-import 'package:ayuuto_savings_app/src/view/screen/group_details/group_details_screen.dart';
 import 'package:ayuuto_savings_app/src/view/screen/manage_group/widget/group_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../controller/groupservice/active_service_controller.dart';
+import '../../controller/groupservice/complete_service_controller.dart';
+import '../Individual Group/widget/custom_appbar.dart';
+import '../group_details/group_details_screen.dart';
 
 class ManageGroupScreen extends StatefulWidget {
   const ManageGroupScreen({super.key});
 
   @override
-  State<ManageGroupScreen> createState() => _ManageGroupScreenState();
+  _ManageGroupScreenState createState() => _ManageGroupScreenState();
 }
 
 class _ManageGroupScreenState extends State<ManageGroupScreen> {
-  bool isActiveGroupSelected = true;
+  final CompleteServiceController _completeController =
+      Get.put(CompleteServiceController());
+  final ActiveServiceController _activeController =
+      Get.put(ActiveServiceController());
 
-  final List<Map<String, String>> activeGroups = [
-    {
-      "groupName": "Group 1",
-      "memberCount": "10 Members",
-      "amount": "\$500 Monthly",
-      "roundProgress": "2 of 6",
-      "nextPayment": "May 20, 2023",
-      "currentReceiver": "Michel T.",
-    },
-    {
-      "groupName": "Group 2",
-      "memberCount": "15 Members",
-      "amount": "\$750 Monthly",
-      "roundProgress": "1 of 5",
-      "nextPayment": "June 1, 2023",
-      "currentReceiver": "John D.",
-    },
-  ];
+  final RxBool isActiveSelected = true.obs;
 
-  final List<Map<String, String>> completedGroups = [
-    {
-      "groupName": "Group 1",
-      "memberCount": "8 Members",
-      "amount": "\$400 Monthly",
-      "roundProgress": "6 of 6",
-      "nextPayment": "Completed",
-      "currentReceiver": "Alice P.",
-    },
-    {
-      "groupName": "Group 2",
-      "memberCount": "8 Members",
-      "amount": "\$400 Monthly",
-      "roundProgress": "6 of 6",
-      "nextPayment": "Completed",
-      "currentReceiver": "Alice P.",
-    },
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _activeController.fetchGroups();
+    _completeController.fetchGroups();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,84 +35,97 @@ class _ManageGroupScreenState extends State<ManageGroupScreen> {
         title: "Manage Group",
         actionIcon: Icons.notifications,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-        child: Column(
-          children: [
-            // Row with Active Group and Complete buttons
-            Row(
+      body: Obx(() {
+        if (_activeController.isLoading.value ||
+            _completeController.isLoading.value) {
+          return const Center(child: CircularProgressIndicator());
+        } else {
+          final isActive = isActiveSelected.value;
+          final groups = isActive
+              ? _activeController.activeGroups
+              : _completeController.completedGroups;
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+            child: Column(
               children: [
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.black,
-                      shape: ContinuousRectangleBorder(
-                        borderRadius: BorderRadius.zero,
+                Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              isActive ? Colors.blue : Colors.white,
+                          foregroundColor:
+                              isActive ? Colors.white : Colors.black,
+                        ),
+                        onPressed: () {
+                          isActiveSelected.value = true;
+                        },
+                        child: const Text("Active Group"),
                       ),
                     ),
-                    onPressed: () {
-                      setState(() {
-                        isActiveGroupSelected = true;
-                      });
-                    },
-                    child: Text("Active Group"),
-                  ),
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              !isActive ? Colors.blue : Colors.white,
+                          foregroundColor:
+                              !isActive ? Colors.white : Colors.black,
+                        ),
+                        onPressed: () {
+                          isActiveSelected.value = false;
+                        },
+                        child: const Text("Complete"),
+                      ),
+                    ),
+                  ],
                 ),
                 Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.black,
-                      shape: ContinuousRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      ),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        isActiveGroupSelected = false;
-                      });
-                    },
-                    child: Text("Complete"),
-                  ),
+                  child: groups.isEmpty
+                      ? Center(
+                          child: Text(
+                            "No groups found",
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        )
+                      : ListView.builder(
+                          itemCount: groups.length,
+                          itemBuilder: (context, index) {
+                            final group = groups[index];
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(() => GroupDetailsScreen(group: group));
+                              },
+                              child: Card(
+                                child: GroupCard(
+                                  groupName: group.groupName,
+                                  memberCount: group.totalMembers.toString(),
+                                  amount: group.contributionAmount.toString(),
+                                  roundProgress: group.roundInfo,
+                                  nextPayment:
+                                      group.status.toLowerCase() == "active"
+                                          ? group.nextCycleDate?.toString() ??
+                                              "No date"
+                                          : "Group status pending",
+                                  currentReceiver: group.lastWinnerName,
+                                  totalAmount: (group.contributionAmount *
+                                          group.totalMembers)
+                                      .toString(),
+                                  onInvitePressed: () {},
+                                  isCompleted:
+                                      group.status.toLowerCase() == 'completed',
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                 ),
               ],
             ),
-            // Display groups based on selection
-            Expanded(
-              child: ListView.builder(
-                itemCount: isActiveGroupSelected
-                    ? activeGroups.length
-                    : completedGroups.length,
-                itemBuilder: (context, index) {
-                  final groupData = isActiveGroupSelected
-                      ? activeGroups[index]
-                      : completedGroups[index];
-                  return GestureDetector(
-                    onTap: (){
-                      Get.to(()=>GroupDetailsScreen());
-                    },
-                    child: Card(
-                      child: GroupCard(
-                        groupName: groupData["groupName"]!,
-                        memberCount: groupData["memberCount"]!,
-                        amount: groupData["amount"]!,
-                        roundProgress: groupData["roundProgress"]!,
-                        nextPayment: groupData["nextPayment"]!,
-                        currentReceiver: groupData["currentReceiver"]!,
-                        onInvitePressed: () {
-                          print("Invite button pressed!");
-                        },
-                        isCompleted: !isActiveGroupSelected, totalAmount: '\$500',
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
+          );
+        }
+      }),
     );
   }
 }

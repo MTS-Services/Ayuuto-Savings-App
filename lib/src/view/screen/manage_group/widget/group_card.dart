@@ -78,7 +78,16 @@ class GroupCard extends StatelessWidget {
                             .bodySmall
                             ?.copyWith(fontSize: 12),
                       ),
+                      SizedBox(width: 5,),
+                      Text(
+                        "Member",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(fontSize: 12),
+                      ),
                       const SizedBox(width: 8),
+
                       Text(
                         amount,
                         style: Theme.of(context)
@@ -86,6 +95,15 @@ class GroupCard extends StatelessWidget {
                             .bodySmall
                             ?.copyWith(fontSize: 12),
                       ),
+                      SizedBox(width: 5,),
+                      Text(
+                        "Monthly",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(fontSize: 12),
+                      ),
+
                     ],
                   ),
                 ],
@@ -174,7 +192,7 @@ class GroupCard extends StatelessWidget {
         Text(
           value,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+                fontWeight: isBold ? FontWeight.normal : FontWeight.normal,
                 fontSize: 14,
               ),
         ),

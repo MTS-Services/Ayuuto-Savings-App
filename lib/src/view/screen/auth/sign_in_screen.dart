@@ -24,8 +24,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   void initState() {
-    _emailETController.text = "mdtayobalideveloper@gmail.com";
-    _passwordETController.text = "mdt@123@";
+    _emailETController.text = "omersalad.9@gmail.com";
+    _passwordETController.text = "omr@123@";
     super.initState();
   }
 
@@ -150,13 +150,13 @@ class _SignInScreenState extends State<SignInScreen> {
               .get();
 
           final data = userDoc.data();
-          print("📄 Firestore data: $data");
+          print("Firestore data: $data");
           final role = userDoc.data()?['role'] ?? 'member';
 
           showSnackBarMessage(context, "Login successful!");
-          print("✅ Signed in as: ${user.email}");
+          print("Signed in as: ${user.email}");
           print(
-              "📦 Retrieved role from Firestore: $role (${userDoc.data()?['role']})");
+              "Retrieved role from Firestore: $role (${userDoc.data()?['role']})");
 
           Get.to(() => NavigationMenu(userRole: role));
         }
