@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import '../../../controller/groupinvitecontroller/user_member_controller.dart';
 import 'invite_bottom_sheet.dart';
 
+
 class GroupCard extends StatelessWidget {
+  final String groupId;
   final String groupName;
   final String memberCount;
   final String amount;
@@ -24,17 +27,25 @@ class GroupCard extends StatelessWidget {
     required this.totalAmount,
     required this.onInvitePressed,
     required this.isCompleted,
+    required this.groupId,
   });
 
   void _showInviteBottomSheet(BuildContext context) {
+    if (!Get.isRegistered<InviteController>()) {
+      Get.put(InviteController());
+    }
+
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) => const InviteBottomSheet(),
-    );
+      builder: (context) => InviteBottomSheet(groupId: groupId,),
+    ).whenComplete(() {
+
+      Get.delete<InviteController>();
+    });
   }
 
   @override
@@ -63,47 +74,24 @@ class GroupCard extends StatelessWidget {
                 children: [
                   Text(
                     groupName,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(fontSize: 14),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
                   ),
                   const SizedBox(height: 4),
                   Row(
                     children: [
                       Text(
                         memberCount,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall
-                            ?.copyWith(fontSize: 12),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 12),
                       ),
-                      SizedBox(width: 5,),
-                      Text(
-                        "Member",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall
-                            ?.copyWith(fontSize: 12),
-                      ),
+                      const SizedBox(width: 5),
+                      const Text("Member", style: TextStyle(fontSize: 12)),
                       const SizedBox(width: 8),
-
                       Text(
                         amount,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall
-                            ?.copyWith(fontSize: 12),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 12),
                       ),
-                      SizedBox(width: 5,),
-                      Text(
-                        "Monthly",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall
-                            ?.copyWith(fontSize: 12),
-                      ),
-
+                      const SizedBox(width: 5),
+                      const Text("Monthly", style: TextStyle(fontSize: 12)),
                     ],
                   ),
                 ],
@@ -111,49 +99,41 @@ class GroupCard extends StatelessWidget {
               if (!isCompleted)
                 IconButton(
                   style: IconButton.styleFrom(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     shape: ContinuousRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
-                      side: BorderSide(
-                        width: 1,
-                        color: Colors.grey.shade600,
-                      ),
+                      side: BorderSide(width: 1, color: Colors.grey.shade600),
                     ),
                   ),
                   onPressed: () => _showInviteBottomSheet(context),
                   icon: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(
-                        Icons.person_outline_outlined,
-                        size: 20,
-                        color: Colors.black,
-                      ),
+                      const Icon(Icons.person_outline_outlined, size: 20, color: Colors.black),
                       const SizedBox(width: 8),
                       Text(
                         "Invite",
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Colors.black,
-                            ),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
                       ),
                     ],
                   ),
                 ),
               if (!isCompleted)
                 InkWell(
-                    onTap: () {},
-                    child: Text("Active",
-                        style: Theme.of(context).textTheme.bodySmall))
+                  onTap: () {},
+                  child: Text("Active", style: Theme.of(context).textTheme.bodySmall),
+                )
               else
                 Text(
                   "Completed",
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12,
-                      ),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                  ),
                 ),
             ],
           ),
@@ -165,8 +145,7 @@ class GroupCard extends StatelessWidget {
               if (!isCompleted)
                 _infoColumn("Next Payment", nextPayment, context, isBold: true),
               if (!isCompleted)
-                _infoColumn("Current Receiver", currentReceiver, context,
-                    isBold: true),
+                _infoColumn("Current Receiver", currentReceiver, context, isBold: true),
               if (isCompleted)
                 _infoColumn("Total Amount", totalAmount, context, isBold: true),
             ],
@@ -176,25 +155,24 @@ class GroupCard extends StatelessWidget {
     );
   }
 
-  Widget _infoColumn(String title, String value, BuildContext context,
-      {bool isBold = false}) {
+  Widget _infoColumn(String title, String value, BuildContext context, {bool isBold = false}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Colors.grey,
-                fontSize: 12,
-              ),
+            color: Colors.grey,
+            fontSize: 12,
+          ),
         ),
         const SizedBox(height: 2),
         Text(
           value,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                fontWeight: isBold ? FontWeight.normal : FontWeight.normal,
-                fontSize: 14,
-              ),
+            fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+            fontSize: 14,
+          ),
         ),
       ],
     );
