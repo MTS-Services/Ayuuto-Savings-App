@@ -7,6 +7,9 @@ import '../../../model/get_group_model/get_group_model.dart';
 
 class ActiveServiceController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+
+
   var isLoading = false.obs;
   var groups = <GetGroupModel>[].obs;
   var isActiveGroupSelected = true.obs;

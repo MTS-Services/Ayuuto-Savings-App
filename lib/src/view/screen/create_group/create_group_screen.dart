@@ -30,7 +30,6 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("UserID = ${_auth.currentUser!.uid}");
     return Scaffold(
       appBar: CustomAppBar(title: "Create Group"),
       body: SingleChildScrollView(

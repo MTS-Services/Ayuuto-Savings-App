@@ -38,18 +38,4 @@ class GetGroupModel {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'groupId': groupId,
-      'groupName': groupName,
-      'status': status,
-      'totalMembers': totalMembers,
-      'roundInfo': roundInfo,
-      'contributionAmount': contributionAmount,
-      'description': description,
-      'members': members,
-      'LastwinnerName': lastWinnerName,
-      'nextCycleDate': nextCycleDate,
-    };
-  }
 }
