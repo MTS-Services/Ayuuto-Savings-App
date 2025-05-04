@@ -2,6 +2,7 @@ C/C++ Structured LogW
 U
 SC:\flutter\src\flutter\packages\flutter_tools\gradle\src\main\groovy\CMakeLists.txtC
 A
+<<<<<<< HEAD
 ?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	ç€Êé2§ «§°ã2q
 o
 mE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\arm64-v8a\additional_project_files.txt	Žç€Êé2 ðÆ¹Ôè2n
@@ -26,3 +27,29 @@ e
 cE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\arm64-v8a\prefab_config.json	Žç€Êé2( ýÆ¹Ôè2l
 j
 hE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\arm64-v8a\symbol_folder_index.txt	Žç€Êé2_ þÆ¹Ôè2
+=======
+?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	Ñ×Ýé2§ «§°ã2q
+o
+mE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\arm64-v8a\additional_project_files.txt	Ò×Ýé2 ðÆ¹Ôè2n
+l
+jE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\arm64-v8a\android_gradle_build.json	Ò×Ýé2¶ òÆ¹Ôè2s
+q
+oE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\arm64-v8a\android_gradle_build_mini.json	Ò×Ýé2— üÆ¹Ôè2`
+^
+\E:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\arm64-v8a\build.ninja	Ò×Ýé2ïÏ “Æ¹Ôè2d
+b
+`E:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\arm64-v8a\build.ninja.txt	Ò×Ýé2i
+g
+eE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\arm64-v8a\build_file_index.txt	Ò×Ýé2S þÆ¹Ôè2j
+h
+fE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\arm64-v8a\compile_commands.json	Ò×Ýé2	n
+l
+jE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\arm64-v8a\compile_commands.json.bin	Ò×Ýé2
+t
+r
+pE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\arm64-v8a\metadata_generation_command.txt	Ò×Ýé2Ñ ýÆ¹Ôè2g
+e
+cE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\arm64-v8a\prefab_config.json	Ò×Ýé2( ýÆ¹Ôè2l
+j
+hE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\arm64-v8a\symbol_folder_index.txt	Ò×Ýé2_ þÆ¹Ôè2
+>>>>>>> tayob

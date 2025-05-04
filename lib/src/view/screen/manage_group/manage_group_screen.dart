@@ -55,9 +55,9 @@ class _ManageGroupScreenState extends State<ManageGroupScreen> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              isActive ? Colors.blue : Colors.white,
+                              isActive ? Colors.white : Colors.white,
                           foregroundColor:
-                              isActive ? Colors.white : Colors.black,
+                              isActive ? Colors.black : Colors.black,
                         ),
                         onPressed: () {
                           isActiveSelected.value = true;
@@ -69,9 +69,12 @@ class _ManageGroupScreenState extends State<ManageGroupScreen> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              !isActive ? Colors.blue : Colors.white,
+                              !isActive ? Colors.white : Colors.white,
                           foregroundColor:
-                              !isActive ? Colors.white : Colors.black,
+                              !isActive ? Colors.black : Colors.black,
+                          shape: ContinuousRectangleBorder(
+                            borderRadius: BorderRadius.zero
+                          )
                         ),
                         onPressed: () {
                           isActiveSelected.value = false;
@@ -112,9 +115,12 @@ class _ManageGroupScreenState extends State<ManageGroupScreen> {
                                   totalAmount: (group.contributionAmount *
                                           group.totalMembers)
                                       .toString(),
-                                  onInvitePressed: () {},
+                                  onInvitePressed: () {
+
+                                  },
                                   isCompleted:
                                       group.status.toLowerCase() == 'completed',
+                                      groupId: group.groupId,
                                 ),
                               ),
                             );

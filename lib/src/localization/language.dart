@@ -83,6 +83,7 @@ class Language extends Translations {
           'total_contributed': 'Total Contributed',
           'quick_pay': 'Quick Pay',
           'payment_history': 'Payment History',
+          
 
           // Add more translations here
         },

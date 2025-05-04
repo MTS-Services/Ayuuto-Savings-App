@@ -2,6 +2,7 @@ C/C++ Structured LogW
 U
 SC:\flutter\src\flutter\packages\flutter_tools\gradle\src\main\groovy\CMakeLists.txtC
 A
+<<<<<<< HEAD
 ?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	ˆÒÊé2§ «§°ã2k
 i
 gE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\x86\additional_project_files.txt	ˆÒÊé2 ñÙ¹Ôè2h
@@ -26,3 +27,29 @@ _
 ]E:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\x86\prefab_config.json	ˆÒÊé2( ûÙ¹Ôè2f
 d
 bE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\x86\symbol_folder_index.txt	ˆÒÊé2Y ûÙ¹Ôè2
+=======
+?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	Œ×Ýé2§ «§°ã2k
+i
+gE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\x86\additional_project_files.txt	Œ×Ýé2 ñÙ¹Ôè2h
+f
+dE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\x86\android_gradle_build.json	Œ×Ýé2ª òÙ¹Ôè2m
+k
+iE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\x86\android_gradle_build_mini.json	Œ×Ýé2‹ úÙ¹Ôè2Z
+X
+VE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\x86\build.ninja	Œ×Ýé2ÑÏ »Ù¹Ôè2^
+\
+ZE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\x86\build.ninja.txt	Œ×Ýé2c
+a
+_E:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\x86\build_file_index.txt	Œ×Ýé2S ûÙ¹Ôè2d
+b
+`E:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\x86\compile_commands.json	Œ×Ýé2	h
+f
+dE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\x86\compile_commands.json.bin	Œ×Ýé2
+n
+l
+jE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\x86\metadata_generation_command.txt	Œ×Ýé2³ úÙ¹Ôè2a
+_
+]E:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\x86\prefab_config.json	Œ×Ýé2( ûÙ¹Ôè2f
+d
+bE:\Flutter Projects\Ayuuto-Savings-App\android\app\.cxx\Debug\446n3h24\x86\symbol_folder_index.txt	Œ×Ýé2Y ûÙ¹Ôè2
+>>>>>>> tayob
