@@ -1,14 +1,14 @@
 import 'package:ayuuto_savings_app/core/app_colors.dart';
+import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/language%20controller/language_controller.dart';
 import 'package:ayuuto_savings_app/src/view/screen/AllUserScreen/all_user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart' show Iconsax;
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({
-    super.key,
-  });
+  CustomDrawer({super.key});
+
+  final LanguageController languageController = Get.put(LanguageController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class CustomDrawer extends StatelessWidget {
             decoration: BoxDecoration(color: AppColor.buttonColor),
             child: Center(
               child: Text(
-                'Ayuuto Savings App',
+                'app_name'.tr,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 25,
@@ -31,18 +31,41 @@ class CustomDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Iconsax.profile_2user),
-            title: Text('Groups'),
-            onTap: () {
-              // Handle Groups tap
-            },
+            title: Text('groups'.tr),
+            onTap: () {},
           ),
           ListTile(
             leading: Icon(Iconsax.people),
-            title: Text('All Users'),
+            title: Text('all_users'.tr),
             onTap: () {
-              // Handle Home tap
               Get.to(() => AllUserScreen());
             },
+          ),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Obx(() => Row(
+                  children: [
+                    const Icon(Icons.language),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        languageController.isEnglish.value
+                            ? 'English'
+                            : 'Somali',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                    Switch(
+                      value: languageController.isEnglish.value,
+                      onChanged: languageController.toggleLanguage,
+                      activeColor: AppColor.buttonColor,
+                    ),
+                  ],
+                )),
           ),
         ],
       ),

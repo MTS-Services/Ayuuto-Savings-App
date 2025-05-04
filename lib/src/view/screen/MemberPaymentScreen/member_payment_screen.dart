@@ -22,11 +22,11 @@ class MemberPaymentScreen extends StatelessWidget {
                 children: [
                   PayContainer(
                     num: '\$500.00',
-                    text: 'Upcomming Payment',
+                    text: 'Upcomming \nPayment',
                   ),
                   PayContainer(
                     num: '\$499.00',
-                    text: 'Total Contributed',
+                    text: 'Total \nContributed',
                   ),
                 ],
               ),

@@ -1,6 +1,7 @@
 import 'package:ayuuto_savings_app/core/app_colors.dart';
 import 'package:ayuuto_savings_app/src/model/group_model.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Individual%20Group/widget/custom_appbar.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/Services/stripe_payment_service.dart';
 import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/action_button.dart';
 import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/available_group_card.dart';
 import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/my_group_top_card.dart';
@@ -19,6 +20,7 @@ class MyGroupScreen extends StatefulWidget {
 }
 
 class _MyGroupScreenState extends State<MyGroupScreen> {
+  double amount = 20.0; // Example amount to be charged
   List<GroupModel> myGroups = [
     GroupModel(
       groupName: "Savings Circle",
@@ -124,7 +126,9 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                         children: [
                           ActionButton(
                             title: "Pay Now",
-                            onTap: () {},
+                            onTap: () {
+                                StripePaymentService.paymentSheetInitialization(context, amount.round().toString(), 'USD');
+                            },
                             bottomLeft: Radius.circular(10),
                             bottomRight: Radius.zero,
                           ),
