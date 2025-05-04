@@ -1,5 +1,5 @@
 import 'package:ayuuto_savings_app/core/app_colors.dart';
-import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/language%20controller/language_controller.dart';
+import 'package:ayuuto_savings_app/src/view/screen/AllUserScreen/language%20controller/language_controller.dart';
 import 'package:ayuuto_savings_app/src/view/screen/AllUserScreen/all_user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,32 +41,7 @@ class CustomDrawer extends StatelessWidget {
               Get.to(() => AllUserScreen());
             },
           ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Obx(() => Row(
-                  children: [
-                    const Icon(Icons.language),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Text(
-                        languageController.isEnglish.value
-                            ? 'English'
-                            : 'Somali',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                    Switch(
-                      value: languageController.isEnglish.value,
-                      onChanged: languageController.toggleLanguage,
-                      activeColor: AppColor.buttonColor,
-                    ),
-                  ],
-                )),
-          ),
+         
         ],
       ),
     );

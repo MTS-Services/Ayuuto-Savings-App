@@ -21,13 +21,9 @@ class _SignInScreenState extends State<SignInScreen> {
   late final TextEditingController _passwordETController =
       TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  bool _isLoading = false;
 
-  @override
-  void initState() {
-    _emailETController.text = "omersalad.9@gmail.com";
-    _passwordETController.text = "omr@123@";
-    super.initState();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +41,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 150,
                 ),
                 Text(
-                  "Sign In",
+                  "sign_in".tr,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 SizedBox(
@@ -53,7 +49,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 TextFormField(
                   controller: _emailETController,
-                  decoration: InputDecoration(hintText: "Email"),
+                  decoration: InputDecoration(hintText: 'email'.tr),
                   validator: (value) =>
                       validateField(value: value, fieldType: 'email'),
                 ),
@@ -65,7 +61,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 TextFormField(
                   controller: _passwordETController,
-                  decoration: InputDecoration(hintText: "Password"),
+                  decoration: InputDecoration(hintText: 'password'.tr),
                   validator: (value) =>
                       validateField(value: value, fieldType: 'password'),
                 ),
@@ -77,7 +73,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         Get.to(() => EmailVerificationScreen());
                       },
                       child: Text(
-                        "Forgot password?",
+                        'forgot_password'.tr,
                         style: TextStyle(color: Colors.blue),
                       ),
                     ),
@@ -89,19 +85,30 @@ class _SignInScreenState extends State<SignInScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
-                      if (_globalKey.currentState!.validate()) {
-                        signIn();
-                      }
-                    },
-                    child: Text("Sing In"),
+                    onPressed: _isLoading
+                        ? null
+                        : () {
+                            if (_globalKey.currentState!.validate()) {
+                              signIn();
+                            }
+                          },
+                    child: _isLoading
+                        ? SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2,
+                            ),
+                          )
+                        : Text('sign_in'.tr),
                   ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't an account?",
+                      'dont_have_account'.tr,
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall!
@@ -112,7 +119,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         Get.to(() => SignUpScreen());
                       },
                       child: Text(
-                        "Sing Up",
+                        'sign_up'.tr,
                         style: TextStyle(color: Colors.blue),
                       ),
                     )
@@ -134,6 +141,9 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void signIn() async {
+    setState(() {
+      _isLoading = true;
+    });
     try {
       bool isSignedIn = await _firebaseService.signInUser(
         email: _emailETController.text.trim(),
@@ -158,7 +168,7 @@ class _SignInScreenState extends State<SignInScreen> {
           print(
               "Retrieved role from Firestore: $role (${userDoc.data()?['role']})");
 
-          Get.to(() => NavigationMenu(userRole: role));
+          Get.offAll(() => NavigationMenu(userRole: role));
         }
       } else {
         showSnackBarMessage(

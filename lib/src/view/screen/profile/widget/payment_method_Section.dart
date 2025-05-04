@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'add_card_number.dart';
 
 class PaymentMethodSection extends StatefulWidget {
@@ -19,12 +20,13 @@ class _PaymentMethodSectionState extends State<PaymentMethodSection> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           title: Row(
-            children: const [
+            children: [
               Icon(Icons.credit_card, color: Colors.blue),
               SizedBox(width: 8),
-              Text("Add New Card"),
+              Text('add_new_card'.tr),
             ],
           ),
           content: Form(
@@ -35,7 +37,7 @@ class _PaymentMethodSectionState extends State<PaymentMethodSection> {
                 _buildTextFormField(
                   controller: cardNumberController,
                   keyboardType: TextInputType.number,
-                  hintText: "Enter card number",
+                  hintText: 'enter_card_number'.tr,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return "Card number cannot be empty";
@@ -52,19 +54,20 @@ class _PaymentMethodSectionState extends State<PaymentMethodSection> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text("Cancel"),
+              child: Text('cancel'.tr),
             ),
             ElevatedButton.icon(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   setState(() {
-                    _cardNumbers.add("****** ${cardNumberController.text.trim()}");
+                    _cardNumbers
+                        .add("****** ${cardNumberController.text.trim()}");
                   });
                   Navigator.pop(context);
                 }
               },
               icon: const Icon(Icons.add),
-              label: const Text("Add"),
+              label: Text('add'.tr),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).primaryColor,
                 foregroundColor: Colors.white,
@@ -99,7 +102,8 @@ class _PaymentMethodSectionState extends State<PaymentMethodSection> {
       decoration: InputDecoration(
         hintText: hintText,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
       ),
       validator: validator,
     );
@@ -126,25 +130,29 @@ class _PaymentMethodSectionState extends State<PaymentMethodSection> {
         children: [
           _buildHeader(context),
           const SizedBox(height: 20),
-          ..._cardNumbers.asMap().map((index, number) {
-            return MapEntry(
-              index,
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: AddCardNumber(
-                  icon: Icons.credit_card_rounded,
-                  text: number,
-                  onTap: () {
-                    // TODO: View card details
-                  },
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete, color: Colors.red),
-                    onPressed: () => _deleteCard(index),
+          ..._cardNumbers
+              .asMap()
+              .map((index, number) {
+                return MapEntry(
+                  index,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: AddCardNumber(
+                      icon: Icons.credit_card_rounded,
+                      text: number,
+                      onTap: () {
+                        // TODO: View card details
+                      },
+                      trailing: IconButton(
+                        icon: const Icon(Icons.delete, color: Colors.red),
+                        onPressed: () => _deleteCard(index),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            );
-          }).values.toList(),
+                );
+              })
+              .values
+              .toList(),
         ],
       ),
     );
@@ -155,21 +163,21 @@ class _PaymentMethodSectionState extends State<PaymentMethodSection> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "Payment Method",
+          "payment_method".tr,
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
         ),
         TextButton.icon(
           onPressed: _showAddCardDialog,
           icon: const Icon(Icons.add, size: 20),
           label: Text(
-            "Add New",
+            "add_new".tr,
             style: Theme.of(context).textTheme.bodySmall!.copyWith(
-              fontSize: 13,
-              fontWeight: FontWeight.w500,
-            ),
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
           ),
           style: TextButton.styleFrom(
             foregroundColor: Theme.of(context).primaryColor,

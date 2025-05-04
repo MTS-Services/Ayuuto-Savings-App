@@ -1,7 +1,7 @@
 // lib/src/services/stripe_payment_service.dart
 
 import 'dart:convert';
-import 'package:ayuuto_savings_app/src/view/screen/StripePaymentScreen/keys.dart';
+import 'package:ayuuto_savings_app/core/keys.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';

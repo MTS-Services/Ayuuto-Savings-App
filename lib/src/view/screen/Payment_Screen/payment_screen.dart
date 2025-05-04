@@ -28,7 +28,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return DefaultTabController(
       length: 2, // Number of tabs
       child: Scaffold(
-        appBar: CustomAppBar(title: 'Payment Management'),
+        appBar: CustomAppBar(title: 'payment_management'.tr),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
@@ -47,7 +47,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     ),
                   ],
                 ),
-                child: const TabBar(
+                child: TabBar(
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.grey,
                   indicatorColor: Colors.black,
@@ -63,8 +63,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   ),
                   dividerColor: Colors.transparent,
                   tabs: [
-                    Tab(text: 'Upcoming'),
-                    Tab(text: 'Completed'),
+                    Tab(text: 'upcoming'.tr),
+                    Tab(text: 'completed'.tr),
                   ],
                 ),
               ),

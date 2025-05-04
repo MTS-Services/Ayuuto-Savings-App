@@ -36,14 +36,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
               children: [
                 const SizedBox(height: 150),
                 Text(
-                  "Sign UP",
+                  "sign_up".tr,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 50),
                 TextFormField(
                   controller: _nameETController,
-                  decoration: const InputDecoration(
-                    hintText: "Name",
+                  decoration: InputDecoration(
+                    hintText: "name".tr,
                   ),
                   validator: (value) =>
                       validateField(value: value, fieldType: "name"),
@@ -52,8 +52,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 TextFormField(
                   controller: _emailETController,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    hintText: "Email",
+                  decoration: InputDecoration(
+                    hintText: "email".tr,
                   ),
                   validator: (value) =>
                       validateField(value: value, fieldType: "email"),
@@ -62,8 +62,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 TextFormField(
                   controller: _dateOfBirthETController,
                   readOnly: true,
-                  decoration: const InputDecoration(
-                    hintText: "Date of Birth",
+                  decoration: InputDecoration(
+                    hintText: "date_of_birth".tr,
                     suffixIcon: Icon(Icons.calendar_today),
                   ),
                   onTap: pickDateOfBirth,
@@ -78,8 +78,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 TextFormField(
                   controller: _passwordETController,
                   obscureText: true,
-                  decoration: const InputDecoration(
-                    hintText: "Password",
+                  decoration: InputDecoration(
+                    hintText: "password".tr,
                   ),
                   validator: (value) =>
                       validateField(value: value, fieldType: "password"),
@@ -93,7 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         signUp();
                       }
                     },
-                    child: const Text("Sign Up"),
+                    child: Text("sign_up".tr),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -101,7 +101,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Already have an account?",
+                      "already_have_account".tr,
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall!
@@ -111,8 +111,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       onPressed: () {
                         Get.to(() => const SignInScreen());
                       },
-                      child: const Text(
-                        "Sign In",
+                      child: Text(
+                        "sign_in".tr,
                         style: TextStyle(color: Colors.blue),
                       ),
                     )

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controller/creategroupcontroller/group_create_controller.dart';
 
-
 class CreateGroupScreen extends StatefulWidget {
   const CreateGroupScreen({super.key});
 
@@ -14,25 +13,30 @@ class CreateGroupScreen extends StatefulWidget {
 }
 
 class _CreateGroupScreenState extends State<CreateGroupScreen> {
-  final GroupCreateController _groupCreateController = Get.put(GroupCreateController());
-   final FirebaseAuth  _auth =  FirebaseAuth.instance;
+  final GroupCreateController _groupCreateController =
+      Get.put(GroupCreateController());
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   final TextEditingController _groupNameTEController = TextEditingController();
   final TextEditingController _amountTEController = TextEditingController();
-  final TextEditingController _frequencyTEController = TextEditingController(); 
+  final TextEditingController _frequencyTEController = TextEditingController();
   final TextEditingController _maximumTEController = TextEditingController();
-  final TextEditingController _descriptionNameTEController = TextEditingController();
+  final TextEditingController _descriptionNameTEController =
+      TextEditingController();
 
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
-  final List<String> _frequencies = ["  WEEKLY", "BI_WEEKLY", "MONTHLY", ];
-
+  final List<String> _frequencies = [
+    "  WEEKLY",
+    "BI_WEEKLY",
+    "MONTHLY",
+  ];
 
   @override
   Widget build(BuildContext context) {
     print("UserID = ${_auth.currentUser!.uid}");
     return Scaffold(
-      appBar: CustomAppBar(title: "Create Group"),
+      appBar: CustomAppBar(title: 'create_group'.tr),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
@@ -43,37 +47,38 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
               children: [
                 const SizedBox(height: 10),
                 Text(
-                  "Group Name",
+                  'group_name'.tr,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
                 TextFormField(
                   controller: _groupNameTEController,
-                  decoration: const InputDecoration(hintText: "Enter Group name"),
-                  validator: (value) => validateField(value: value, fieldType: "Group"),
+                  decoration: InputDecoration(hintText: 'enter_group_name'.tr),
+                  validator: (value) =>
+                      validateField(value: value, fieldType: "Group"),
                 ),
                 const SizedBox(height: 15),
                 Row(
                   children: [
                     Expanded(
                       child: Text(
-                        "Contribution Amount",
+                        "contrubution_amount".tr,
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
                       ),
                     ),
                     const SizedBox(width: 20),
                     Expanded(
                       child: Text(
-                        "Frequency",
+                        "frequency".tr,
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w300,
-                        ),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w300,
+                            ),
                       ),
                     ),
                   ],
@@ -84,23 +89,28 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                     Expanded(
                       child: TextFormField(
                         controller: _amountTEController,
-                        decoration: const InputDecoration(hintText: "\$ amount"),
-                        validator: (value) => validateField(value: value, fieldType: "amount"),
+                        decoration: InputDecoration(hintText: "\$ amount".tr),
+                        validator: (value) =>
+                            validateField(value: value, fieldType: "amount"),
                         keyboardType: TextInputType.number,
                       ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: DropdownButtonFormField<String>(
-                        value: _frequencyTEController.text.isEmpty ? null : _frequencyTEController.text,
-                        decoration: const InputDecoration(hintText: "Select Frequency"),
+                        value: _frequencyTEController.text.isEmpty
+                            ? null
+                            : _frequencyTEController.text,
+                        decoration:
+                            InputDecoration(hintText: "select_frequency".tr),
                         items: _frequencies
                             .map((frequency) => DropdownMenuItem(
-                          value: frequency,
-                          child: Text(frequency),
-                        ))
+                                  value: frequency,
+                                  child: Text(frequency),
+                                ))
                             .toList(),
-                        validator: (value) => validateField(value: value, fieldType: "Frequency"),
+                        validator: (value) =>
+                            validateField(value: value, fieldType: "Frequency"),
                         onChanged: (value) {
                           setState(() {
                             _frequencyTEController.text = value!;
@@ -112,26 +122,33 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                 ),
                 const SizedBox(height: 15),
                 Text(
-                  "Maximum Members",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16),
+                  "maximum_members".tr,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 16),
                 ),
                 TextFormField(
                   controller: _maximumTEController,
-                  decoration: const InputDecoration(
-                    hintText: "Enter maximum members",
+                  decoration: InputDecoration(
+                    hintText: "enter_maximum_members".tr,
                   ),
-                  validator: (value) => validateField(value: value, fieldType: "member"),
+                  validator: (value) =>
+                      validateField(value: value, fieldType: "member"),
                   keyboardType: TextInputType.number,
                 ),
                 const SizedBox(height: 15),
                 Text(
-                  "Description",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16),
+                  "description".tr,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 16),
                 ),
                 TextFormField(
                   controller: _descriptionNameTEController,
-                  decoration: const InputDecoration(
-                    hintText: "Group description (Optional)",
+                  decoration: InputDecoration(
+                    hintText: "group_description (optional)".tr,
                   ),
                   maxLines: 4,
                 ),
@@ -139,33 +156,37 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: Obx(
-                        () {
+                    () {
                       if (_groupCreateController.isLoading.value) {
                         return Center(child: CircularProgressIndicator());
                       } else {
                         return ElevatedButton(
                           onPressed: () {
                             if (_globalKey.currentState!.validate()) {
-                              _groupCreateController.groupCreate(
+                              _groupCreateController
+                                  .groupCreate(
                                 adminUserId: _auth.currentUser!.uid,
                                 groupName: _groupNameTEController.text.trim(),
-                                contributionAmount: int.parse(_amountTEController.text.trim()),
+                                contributionAmount:
+                                    int.parse(_amountTEController.text.trim()),
                                 frequency: _frequencyTEController.text.trim(),
-                                maxMembers: int.parse(_maximumTEController.text.trim()),
-                                description: _descriptionNameTEController.text.trim(),
+                                maxMembers:
+                                    int.parse(_maximumTEController.text.trim()),
+                                description:
+                                    _descriptionNameTEController.text.trim(),
                                 context: context,
-                              ).then((_) {
+                              )
+                                  .then((_) {
                                 Get.to(() => ManageGroupScreen());
                               });
                             }
                           },
-                          child: const Text("Create Group"),
+                          child: Text('create_group'.tr),
                         );
                       }
                     },
                   ),
                 )
-
               ],
             ),
           ),

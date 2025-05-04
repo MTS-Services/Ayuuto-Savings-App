@@ -33,7 +33,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   height: 200,
                 ),
                 Text(
-                  "Reset Your Password",
+                  'reset_your_password'.tr,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 SizedBox(
@@ -41,7 +41,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 ),
                 TextFormField(
                   controller: _emailETController,
-                  decoration: InputDecoration(hintText: "Email"),
+                  decoration: InputDecoration(hintText: 'email'.tr),
                   validator: (value) =>
                       validateField(value: value, fieldType: "email"),
                 ),
@@ -54,7 +54,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                         send();
                       }
                     },
-                    child: Text("Reset Password"),
+                    child: Text('reset_password'.tr),
                   ),
                 ),
               ],

@@ -24,7 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "Profile"),
+      appBar: CustomAppBar(title: "profile".tr),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -38,7 +38,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 30),
             Text(
-              "Account Information",
+              'acount_information'.tr,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -47,7 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(height: 10),
             _buildInfoTile(
               icon: Icons.person_outline,
-              title: "Full Name",
+              title: 'full_name'.tr,
               value: fullName,
               onEdit: () => _editField("Full Name", fullName, (newValue) {
                 setState(() {
@@ -58,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildDivider(),
             _buildInfoTile(
               icon: Icons.email_outlined,
-              title: "Email",
+              title: 'email'.tr,
               value: email,
               onEdit: () => _editField("Email", email, (newValue) {
                 setState(() {
@@ -69,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildDivider(),
             _buildInfoTile(
               icon: Icons.phone_outlined,
-              title: "Phone Number",
+              title: 'phone_number'.tr,
               value: phoneNumber,
               onEdit: () => _editField("Phone Number", phoneNumber, (newValue) {
                 setState(() {
@@ -83,7 +83,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 Expanded(
                   child: ProfileInfoCard(
-                    title: " Group Joined",
+                    title: 'group_joined'.tr,
                     count: "2",
                     icon: Icons.group_add_outlined,
                   ),
@@ -91,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(width: 16),
                 Expanded(
                   child: ProfileInfoCard(
-                    title: "Total pay",
+                    title: 'total_pay'.tr,
                     count: "\$200",
                     icon: Icons.group_add_outlined,
                   ),
@@ -117,7 +117,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: Colors.redAccent,
                   ),
                   Text(
-                    "Logout",
+                    'logout'.tr,
                     style: TextStyle(color: Colors.redAccent),
                   )
                 ],
@@ -131,9 +131,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
-
-
-
 
   Widget _buildInfoTile({
     required IconData icon,

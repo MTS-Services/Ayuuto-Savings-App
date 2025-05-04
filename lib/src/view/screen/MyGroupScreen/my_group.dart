@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ayuuto_savings_app/core/app_colors.dart';
 import 'package:ayuuto_savings_app/src/model/group_model.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Individual%20Group/widget/custom_appbar.dart';
@@ -7,9 +9,6 @@ import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/availab
 import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/my_group_top_card.dart';
 import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/my_group_two_container.dart';
 import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/widgets/payment_progress.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import '../manage_group/manage_group_screen.dart';
 
 class MyGroupScreen extends StatefulWidget {
@@ -75,14 +74,13 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.backGroundColor,
-      appBar: CustomAppBar(title: "My Groups"),
+      appBar: CustomAppBar(title: 'my_groups'.tr),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               const SizedBox(height: 20),
               ListView.builder(
                 shrinkWrap: true,
@@ -99,20 +97,19 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                         status: group.status,
                         backgroundColor: AppColor.themeColor,
                         statusColor: AppColor.activeButton,
-
                       ),
                       Row(
                         children: [
                           MyGroupTwoScreen(
                             backgroundColor: AppColor.themeColor,
-                            title: "Your Turn",
+                            title: 'your_turn'.tr,
                             day: group.yourTurnDay,
                             monthYear: group.yourTurnMonthYear,
                             containerColor: Colors.grey.shade200,
                           ),
                           MyGroupTwoScreen(
                             backgroundColor: AppColor.themeColor,
-                            title: "Next Payment",
+                            title: 'next_payment'.tr,
                             day: group.nextPaymentDay,
                             monthYear: group.nextPaymentMonthYear,
                           ),
@@ -125,17 +122,19 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                       Row(
                         children: [
                           ActionButton(
-                            title: "Pay Now",
-                            onTap: () {
-                                StripePaymentService.paymentSheetInitialization(context, amount.round().toString(), 'USD');
+                            title: 'pay_now'.tr,
+                            onTap: () async {
+                              // Ensure Stripe Payment Initialization with the required details
+                              await StripePaymentService.paymentSheetInitialization(
+                                  context, amount.round().toString(), 'USD');
                             },
                             bottomLeft: Radius.circular(10),
                             bottomRight: Radius.zero,
                           ),
                           ActionButton(
-                            title: "Details",
+                            title: 'details'.tr,
                             onTap: () {
-                              Get.to(()=>ManageGroupScreen());
+                              Get.to(() => ManageGroupScreen());
                             },
                             bottomLeft: Radius.zero,
                             bottomRight: Radius.circular(10),
@@ -151,7 +150,7 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Available Group",
+                    'available_groups'.tr,
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!
@@ -162,7 +161,7 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                       // View All Tap Logic Here
                     },
                     child: Text(
-                      "View All",
+                      'view_all'.tr,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
@@ -179,8 +178,9 @@ class _MyGroupScreenState extends State<MyGroupScreen> {
                 itemBuilder: (context, index) {
                   final available = availableGroups[index];
                   return AvailableGroupCard(
-                      groupName: available.groupName,
-                      roundInfo: available.roundInfo);
+                    groupName: available.groupName,
+                    roundInfo: available.roundInfo,
+                  );
                 },
               ),
             ],
