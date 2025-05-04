@@ -45,7 +45,7 @@ class NavigationMenu extends StatelessWidget {
                     ? Colors.black
                     : Colors.white,
               ),
-              label: 'Home',
+              label: 'home'.tr,
             ),
             NavigationDestination(
               icon: Icon(
@@ -54,7 +54,7 @@ class NavigationMenu extends StatelessWidget {
                     ? Colors.black
                     : Colors.white,
               ),
-              label: 'Groups',
+              label: 'groups'.tr,
             ),
             NavigationDestination(
               icon: Icon(
@@ -63,7 +63,7 @@ class NavigationMenu extends StatelessWidget {
                     ? Colors.black
                     : Colors.white,
               ),
-              label: 'Payments',
+              label: 'payments'.tr,
             ),
             NavigationDestination(
               icon: Icon(
@@ -72,7 +72,7 @@ class NavigationMenu extends StatelessWidget {
                     ? Colors.black
                     : Colors.white,
               ),
-              label: 'Profile',
+              label: 'profile'.tr,
             ),
           ],
         ),

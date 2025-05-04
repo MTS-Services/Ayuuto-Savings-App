@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class GetGroupModel {
   final String groupId;
   final String groupName;
@@ -22,6 +24,13 @@ class GetGroupModel {
     required this.lastWinnerName,
     this.nextCycleDate,
   });
+
+  // 🔥 Custom Getter for Translated Status
+  String get translatedStatus => status.toLowerCase().tr;
+
+  String get translatedRoundInfo => roundInfo.toLowerCase().tr;
+
+  String get translatedDescription => description.toLowerCase().tr;
 
   factory GetGroupModel.fromJson(Map<String, dynamic> json) {
     return GetGroupModel(

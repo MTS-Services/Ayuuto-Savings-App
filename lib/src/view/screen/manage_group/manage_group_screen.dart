@@ -32,7 +32,7 @@ class _ManageGroupScreenState extends State<ManageGroupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: "Manage Group",
+        title: 'manage_group'.tr,
         actionIcon: Icons.notifications,
       ),
       body: Obx(() {
@@ -62,7 +62,7 @@ class _ManageGroupScreenState extends State<ManageGroupScreen> {
                         onPressed: () {
                           isActiveSelected.value = true;
                         },
-                        child: const Text("Active Group"),
+                        child: Text('active_groups'.tr),
                       ),
                     ),
                     Expanded(
@@ -76,7 +76,7 @@ class _ManageGroupScreenState extends State<ManageGroupScreen> {
                         onPressed: () {
                           isActiveSelected.value = false;
                         },
-                        child: const Text("Complete"),
+                        child: Text('complete'.tr),
                       ),
                     ),
                   ],
@@ -85,7 +85,7 @@ class _ManageGroupScreenState extends State<ManageGroupScreen> {
                   child: groups.isEmpty
                       ? Center(
                           child: Text(
-                            "No groups found",
+                            'no_groups_found'.tr,
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                         )
@@ -107,7 +107,7 @@ class _ManageGroupScreenState extends State<ManageGroupScreen> {
                                       group.status.toLowerCase() == "active"
                                           ? group.nextCycleDate?.toString() ??
                                               "No date"
-                                          : "Group status pending",
+                                          : 'group_status_pending'.tr,
                                   currentReceiver: group.lastWinnerName,
                                   totalAmount: (group.contributionAmount *
                                           group.totalMembers)

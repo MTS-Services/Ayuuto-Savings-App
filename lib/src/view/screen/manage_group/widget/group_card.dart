@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get_utils/get_utils.dart';
 import 'invite_bottom_sheet.dart';
 
 class GroupCard extends StatelessWidget {
@@ -78,16 +78,17 @@ class GroupCard extends StatelessWidget {
                             .bodySmall
                             ?.copyWith(fontSize: 12),
                       ),
-                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Text(
-                        "Member",
+                        "members".tr,
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall
                             ?.copyWith(fontSize: 12),
                       ),
                       const SizedBox(width: 8),
-
                       Text(
                         amount,
                         style: Theme.of(context)
@@ -95,15 +96,16 @@ class GroupCard extends StatelessWidget {
                             .bodySmall
                             ?.copyWith(fontSize: 12),
                       ),
-                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Text(
-                        "Monthly",
+                        "monthly".tr,
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall
                             ?.copyWith(fontSize: 12),
                       ),
-
                     ],
                   ),
                 ],
@@ -132,7 +134,7 @@ class GroupCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        "Invite",
+                        'invite'.tr,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
@@ -145,11 +147,11 @@ class GroupCard extends StatelessWidget {
               if (!isCompleted)
                 InkWell(
                     onTap: () {},
-                    child: Text("Active",
+                    child: Text('active'.tr,
                         style: Theme.of(context).textTheme.bodySmall))
               else
                 Text(
-                  "Completed",
+                  'complete'.tr,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.w500,
                         fontSize: 12,
@@ -161,14 +163,16 @@ class GroupCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _infoColumn("Round", roundProgress, context),
+              _infoColumn('round'.tr, roundProgress, context),
               if (!isCompleted)
-                _infoColumn("Next Payment", nextPayment, context, isBold: true),
+                _infoColumn('next_payment'.tr, nextPayment, context,
+                    isBold: true),
               if (!isCompleted)
-                _infoColumn("Current Receiver", currentReceiver, context,
+                _infoColumn("current_receiver".tr, currentReceiver, context,
                     isBold: true),
               if (isCompleted)
-                _infoColumn("Total Amount", totalAmount, context, isBold: true),
+                _infoColumn('total_amount'.tr, totalAmount, context,
+                    isBold: true),
             ],
           ),
         ],
