@@ -7,6 +7,8 @@ import 'package:ayuuto_savings_app/src/view/widget/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../auth/sign_in_screen.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -34,15 +36,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
               fullName: fullName,
               email: email,
               imageUrl:
-                  'https://plus.unsplash.com/premium_photo-1689977807477-a579eda91fa2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              'https://plus.unsplash.com/premium_photo-1689977807477-a579eda91fa2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             ),
             const SizedBox(height: 30),
             Text(
               'acount_information'.tr,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
             ),
             const SizedBox(height: 10),
             _buildInfoTile(
@@ -106,9 +108,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white, backgroundColor: Colors.white),
-              onPressed: () {
-                _firebaseService.logOutUser();
-                Get.back();
+              onPressed: () async {
+                bool success = await _firebaseService.logOutUser();
+                if (success) {
+                   Get.to(()=>SignInScreen());
+                } else {
+                  showSnackBarMessage(context, 'Logout failed. Please try again.');
+                }
               },
               child: Row(
                 children: [
@@ -144,9 +150,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       subtitle: Text(
         value,
         style: Theme.of(context).textTheme.bodySmall!.copyWith(
-              fontWeight: FontWeight.w500,
-              fontSize: 18,
-            ),
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+        ),
       ),
       trailing: Icon(Icons.edit, color: Colors.grey),
       onTap: onEdit,
@@ -159,8 +165,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void _editField(String title, String currentValue, Function(String) onSave) {
     TextEditingController controller =
-        TextEditingController(text: currentValue);
-
+    TextEditingController(text: currentValue);
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -181,7 +186,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               borderRadius: BorderRadius.circular(12),
             ),
             contentPadding:
-                const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           ),
         ),
         actions: [

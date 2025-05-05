@@ -80,13 +80,14 @@ class FirebaseService {
   // ======================== Logout =========================
   Future<bool> logOutUser() async {
     try {
-      await _auth.signOut();
+      await FirebaseAuth.instance.signOut();
       return true;
     } catch (e) {
       print('Logout Error: $e');
       return false;
     }
   }
+
 
   // ======================== Email Verification =========================
   Future<bool> sendEmailVerification() async {

@@ -1,0 +1,2 @@
+D:/ayuuto_savings_app/android/app/.cxx/RelWithDebInfo/q4h6h653/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/ayuuto_savings_app/android/app/.cxx/RelWithDebInfo/q4h6h653/armeabi-v7a/CMakeFiles/rebuild_cache.dir

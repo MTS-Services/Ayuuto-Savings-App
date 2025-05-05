@@ -1,0 +1,2 @@
+D:/ayuuto_savings_app/android/app/.cxx/RelWithDebInfo/q4h6h653/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/ayuuto_savings_app/android/app/.cxx/RelWithDebInfo/q4h6h653/arm64-v8a/CMakeFiles/rebuild_cache.dir
