@@ -25,7 +25,6 @@ class GetGroupModel {
     this.nextCycleDate,
   });
 
-  // 🔥 Custom Getter for Translated Status
   String get translatedStatus => status.toLowerCase().tr;
 
   String get translatedRoundInfo => roundInfo.toLowerCase().tr;

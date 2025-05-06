@@ -23,7 +23,12 @@ class _SignInScreenState extends State<SignInScreen> {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
-  
+  @override
+  void initState() {
+    super.initState();
+    _emailETController.text = "mdalarafat315@gmail.com";
+    _passwordETController.text = "arf@123@";
+  }
 
   @override
   Widget build(BuildContext context) {

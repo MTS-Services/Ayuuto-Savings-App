@@ -1,39 +1,50 @@
 class GroupModel {
-  final String adminUserId;
+  final String groupId;
   final String groupName;
-  final int contributionAmount;
-  final String frequency;
-  final int maxMembers;
-  final String description;
+  final int totalMembers;
+  final double contributionAmount;
+  final String roundInfo;
+  final String? nextCycleDate;
+  final String lastWinnerName;
+  final String status;
+  final String acceptCode; // <-- নতুন ফিল্ড
 
   GroupModel({
-    required this.adminUserId,
+    required this.groupId,
     required this.groupName,
+    required this.totalMembers,
     required this.contributionAmount,
-    required this.frequency,
-    required this.maxMembers,
-    required this.description,
+    required this.roundInfo,
+    required this.nextCycleDate,
+    required this.lastWinnerName,
+    required this.status,
+    required this.acceptCode,
   });
 
-  factory GroupModel.fromJson(Map<String, dynamic> json) {
+  factory GroupModel.fromMap(Map<String, dynamic> map, String docId) {
     return GroupModel(
-      adminUserId: json['adminUserId'],
-      groupName: json['groupName'],
-      contributionAmount: json['contributionAmount'],
-      frequency: json['frequency'],
-      maxMembers: json['maxMembers'],
-      description: json['description'],
+      groupId: docId,
+      groupName: map['groupName'] ?? '',
+      totalMembers: map['totalMembers'] ?? 0,
+      contributionAmount: (map['contributionAmount'] ?? 0).toDouble(),
+      roundInfo: map['roundInfo'] ?? '',
+      nextCycleDate: map['nextCycleDate'],
+      lastWinnerName: map['lastWinnerName'] ?? '',
+      status: map['status'] ?? '',
+      acceptCode: map['acceptCode'] ?? '', // <-- acceptCode include
     );
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     return {
-      'adminUserId': adminUserId,
       'groupName': groupName,
+      'totalMembers': totalMembers,
       'contributionAmount': contributionAmount,
-      'frequency': frequency,
-      'maxMembers': maxMembers,
-      'description': description,
+      'roundInfo': roundInfo,
+      'nextCycleDate': nextCycleDate,
+      'lastWinnerName': lastWinnerName,
+      'status': status,
+      'acceptCode': acceptCode,
     };
   }
 }

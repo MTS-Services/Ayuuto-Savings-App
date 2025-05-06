@@ -14,7 +14,7 @@ class CreateGroupScreen extends StatefulWidget {
 
 class _CreateGroupScreenState extends State<CreateGroupScreen> {
   final GroupCreateController _groupCreateController =
-      Get.put(GroupCreateController());
+  Get.put(GroupCreateController());
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   final TextEditingController _groupNameTEController = TextEditingController();
@@ -22,7 +22,8 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
   final TextEditingController _frequencyTEController = TextEditingController();
   final TextEditingController _maximumTEController = TextEditingController();
   final TextEditingController _descriptionNameTEController =
-      TextEditingController();
+  TextEditingController();
+  final TextEditingController _acceptCodeTEController = TextEditingController();
 
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
@@ -48,9 +49,9 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                 Text(
                   'group_name'.tr,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 TextFormField(
                   controller: _groupNameTEController,
@@ -65,9 +66,9 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                       child: Text(
                         "contrubution_amount".tr,
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 20),
@@ -75,9 +76,9 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                       child: Text(
                         "frequency".tr,
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w300,
-                            ),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w300,
+                        ),
                       ),
                     ),
                   ],
@@ -101,12 +102,12 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                             ? null
                             : _frequencyTEController.text,
                         decoration:
-                            InputDecoration(hintText: "select_frequency".tr),
+                        InputDecoration(hintText: "select_frequency".tr),
                         items: _frequencies
                             .map((frequency) => DropdownMenuItem(
-                                  value: frequency,
-                                  child: Text(frequency),
-                                ))
+                          value: frequency,
+                          child: Text(frequency),
+                        ))
                             .toList(),
                         validator: (value) =>
                             validateField(value: value, fieldType: "Frequency"),
@@ -151,11 +152,27 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                   ),
                   maxLines: 4,
                 ),
+                const SizedBox(height: 15),
+                Text(
+                  "accept_code".tr, // New Field for Accept Code
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 16),
+                ),
+                TextFormField(
+                  controller: _acceptCodeTEController,
+                  decoration: InputDecoration(
+                    hintText: "enter_accept_code".tr,
+                  ),
+                  validator: (value) =>
+                      validateField(value: value, fieldType: "Accept Code"),
+                ),
                 const SizedBox(height: 20),
                 SizedBox(
                   width: double.infinity,
                   child: Obx(
-                    () {
+                        () {
                       if (_groupCreateController.isLoading.value) {
                         return Center(child: CircularProgressIndicator());
                       } else {
@@ -167,12 +184,13 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                                 adminUserId: _auth.currentUser!.uid,
                                 groupName: _groupNameTEController.text.trim(),
                                 contributionAmount:
-                                    int.parse(_amountTEController.text.trim()),
+                                int.parse(_amountTEController.text.trim()),
                                 frequency: _frequencyTEController.text.trim(),
                                 maxMembers:
-                                    int.parse(_maximumTEController.text.trim()),
+                                int.parse(_maximumTEController.text.trim()),
                                 description:
-                                    _descriptionNameTEController.text.trim(),
+                                _descriptionNameTEController.text.trim(),
+                                acceptCode: _acceptCodeTEController.text.trim(),  // Sending acceptCode here
                                 context: context,
                               )
                                   .then((_) {
@@ -225,6 +243,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
     _amountTEController.dispose();
     _groupNameTEController.dispose();
     _frequencyTEController.dispose();
+    _acceptCodeTEController.dispose(); // Disposing the acceptCode controller
     super.dispose();
   }
 }

@@ -17,6 +17,7 @@ class GroupCreateController extends GetxController {
     required String frequency,
     required int maxMembers,
     required String description,
+    required String acceptCode, // নতুন ফিল্ড
     required BuildContext context,
   }) async {
     isLoading.value = true;
@@ -30,7 +31,8 @@ class GroupCreateController extends GetxController {
       "contributionAmount": contributionAmount,
       "frequency": frequency,
       "maxMembers": maxMembers,
-      "description": description
+      "description": description,
+      "acceptCode": acceptCode,
     });
 
     try {
@@ -44,7 +46,7 @@ class GroupCreateController extends GetxController {
         showSnackBarMessage(context, "Group created successfully");
 
         final jsonData = jsonDecode(response.body);
-        return GroupModel.fromJson(jsonData);
+        return GroupModel.fromMap(jsonData, jsonData['groupId'] ?? '');
       } else {
         showSnackBarMessage(context, "Group creation failed: ${response.body}");
         return null;
