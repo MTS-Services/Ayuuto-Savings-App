@@ -18,7 +18,6 @@ class NavigationMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('');
     final controller = Get.put(NavigationController(userRole));
 
     return Scaffold(
