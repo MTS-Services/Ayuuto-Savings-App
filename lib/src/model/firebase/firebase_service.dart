@@ -33,6 +33,8 @@ class FirebaseService {
 
       User? user = userCredential.user;
 
+
+
       if (user != null) {
         await user.sendEmailVerification();
         _createController.createUser(
@@ -62,7 +64,9 @@ class FirebaseService {
     required String email,
     required String password,
   }) async {
+    print(_auth.currentUser?.uid);
     try {
+
       await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
