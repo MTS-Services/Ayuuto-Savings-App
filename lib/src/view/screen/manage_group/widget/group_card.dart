@@ -126,7 +126,7 @@ class GroupCard extends StatelessWidget {
               ),
               if (!isCompleted && isAdmin)
 
-                IconButton(
+                IconButton(  
                   style: IconButton.styleFrom(
                     padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 8),

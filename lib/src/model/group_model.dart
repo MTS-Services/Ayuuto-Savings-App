@@ -1,4 +1,4 @@
-class GroupModel {
+class MyGroupModel {
   final String groupName;
   final String roundInfo;
   final String status;
@@ -9,7 +9,7 @@ class GroupModel {
   final String progressText;
   final String completedText;
 
-  GroupModel({
+  MyGroupModel({
     required this.groupName,
     required this.roundInfo,
     required this.status,
@@ -20,4 +20,17 @@ class GroupModel {
     required this.progressText,
     required this.completedText,
   });
+  factory MyGroupModel.fromJson(Map<String, dynamic> json) {
+    return MyGroupModel(
+      groupName: json['groupName'] ?? "",
+      roundInfo: json['roundInfo'] ?? "",
+      status: json['status'] ?? "",
+      yourTurnDay: json['yourTurnDay'] ?? "",
+      yourTurnMonthYear: json['yourTurnMonthYear'] ?? "",
+      nextPaymentDay: json['nextPaymentDay'] ?? "",
+      nextPaymentMonthYear: json['nextPaymentMonthYear'] ?? "",
+      progressText: json['progressText'] ?? "",
+      completedText: json['completedText'] ?? "",
+    );
+  }
 }

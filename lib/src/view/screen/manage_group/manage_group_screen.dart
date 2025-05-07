@@ -15,7 +15,7 @@ class ManageGroupScreen extends StatefulWidget {
   const ManageGroupScreen({super.key});
 
   @override
-  _ManageGroupScreenState createState() => _ManageGroupScreenState();
+  State<ManageGroupScreen> createState() => _ManageGroupScreenState();
 }
 
 class _ManageGroupScreenState extends State<ManageGroupScreen> {
