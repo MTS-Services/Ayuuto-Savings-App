@@ -1,7 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 import '../../../controller/groupinvitecontroller/send_invite_code.dart';
 import '../../../controller/groupinvitecontroller/user_member_controller.dart';
@@ -20,97 +19,11 @@ class _InviteBottomSheetState extends State<InviteBottomSheet> {
   final SendInviteCode inviteCodeController = Get.put(SendInviteCode());
   final TextEditingController inviteCodeTextController = TextEditingController();
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
   @override
   void initState() {
     super.initState();
     controller.groupUser();
   }
-
-  void _showAcceptDialog(String userId) {
-    inviteCodeTextController.clear();
-
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    'Accept Invite',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'Please enter your code to accept the invite.',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  const SizedBox(height: 16),
-                  TextField(
-                    controller: inviteCodeTextController,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter your code',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                      ),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 16),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Obx(() {
-                    return ElevatedButton(
-                      onPressed: inviteCodeController.isInviting.value
-                          ? null
-                          : () async {
-                        final code = inviteCodeTextController.text.trim();
-                        if (code.isNotEmpty) {
-                          await inviteCodeController.sendInvitation(
-                            context,
-                            code,
-                            userId,
-                          );
-                          if (mounted) Navigator.of(context).pop();
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                      ),
-                      child: inviteCodeController.isInviting.value
-                          ? const SizedBox(
-                        height: 16,
-                        width: 16,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                          : const Text('Accept'),
-                    );
-                  }),
-                  const SizedBox(height: 8),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('Cancel'),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +73,8 @@ class _InviteBottomSheetState extends State<InviteBottomSheet> {
                       leading: Checkbox(
                         value: isSelected,
                         onChanged: (bool? val) {
-                          controller.toggleEmailSelection(user.email ?? '', val);
+                          controller.toggleEmailSelection(
+                              user.email ?? '', val);
                         },
                       ),
                       title: Text(
@@ -179,26 +93,20 @@ class _InviteBottomSheetState extends State<InviteBottomSheet> {
             ),
 
             const SizedBox(height: 12),
-
-            ElevatedButton.icon(
-              onPressed: controller.selectedEmails.isEmpty
-                  ? null
-                  : () async {
-                await controller.handleSendInvites(context, widget.groupId);
-
-                  if (mounted) {
-                    _showAcceptDialog(_auth.currentUser!.uid);
-                  }
-
-              },
-              icon: const Icon(Icons.send),
-              label: const Text("Send Invites"),
-            ),
-
+              ElevatedButton.icon(
+                onPressed: controller.selectedEmails.isEmpty
+                    ? null
+                    : () async {
+                  await controller.handleSendInvites(context, widget.groupId);
+                },
+                icon: const Icon(Icons.send),
+                label: const Text("Send Invites"),
+              ),
             const SizedBox(height: 20),
           ],
         ),
       );
     });
   }
+
 }

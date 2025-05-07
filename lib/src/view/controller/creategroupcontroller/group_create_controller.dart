@@ -17,7 +17,6 @@ class GroupCreateController extends GetxController {
     required String frequency,
     required int maxMembers,
     required String description,
-    required String acceptCode, // নতুন ফিল্ড
     required BuildContext context,
   }) async {
     isLoading.value = true;
@@ -32,7 +31,7 @@ class GroupCreateController extends GetxController {
       "frequency": frequency,
       "maxMembers": maxMembers,
       "description": description,
-      "acceptCode": acceptCode,
+
     });
 
     try {

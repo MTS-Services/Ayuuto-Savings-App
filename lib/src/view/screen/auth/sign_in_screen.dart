@@ -26,8 +26,8 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   void initState() {
     super.initState();
-    _emailETController.text = "mdalarafat315@gmail.com";
-    _passwordETController.text = "arf@123@";
+    _emailETController.text = "maktechsolutioncorporate@gmail.com";
+    _passwordETController.text = "mdt@123@";
   }
 
   @override

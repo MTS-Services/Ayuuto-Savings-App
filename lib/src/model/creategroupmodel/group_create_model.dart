@@ -7,7 +7,7 @@ class GroupModel {
   final String? nextCycleDate;
   final String lastWinnerName;
   final String status;
-  final String acceptCode; // <-- নতুন ফিল্ড
+  final String acceptCode;
 
   GroupModel({
     required this.groupId,
@@ -31,7 +31,7 @@ class GroupModel {
       nextCycleDate: map['nextCycleDate'],
       lastWinnerName: map['lastWinnerName'] ?? '',
       status: map['status'] ?? '',
-      acceptCode: map['acceptCode'] ?? '', // <-- acceptCode include
+      acceptCode: map['acceptCode'] ?? ''
     );
   }
 

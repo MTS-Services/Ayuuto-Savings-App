@@ -1,10 +1,8 @@
-import 'package:ayuuto_savings_app/src/view/controller/groupinvitecontroller/user_member_controller.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_utils/get_utils.dart';
+import '../../../controller/groupinvitecontroller/user_member_controller.dart';
 import 'invite_bottom_sheet.dart';
-
 
 class GroupCard extends StatelessWidget {
   final String groupId;
@@ -17,6 +15,7 @@ class GroupCard extends StatelessWidget {
   final String totalAmount;
   final VoidCallback onInvitePressed;
   final bool isCompleted;
+  final bool isAdmin;
 
   const GroupCard({
     super.key,
@@ -30,6 +29,7 @@ class GroupCard extends StatelessWidget {
     required this.onInvitePressed,
     required this.isCompleted,
     required this.groupId,
+    required this.isAdmin,  // Pass this parameter
   });
 
   void _showInviteBottomSheet(BuildContext context) {
@@ -43,9 +43,10 @@ class GroupCard extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) => InviteBottomSheet(groupId: groupId,),
+      builder: (context) => InviteBottomSheet(
+        groupId: groupId,
+      ),
     ).whenComplete(() {
-
       Get.delete<InviteController>();
     });
   }
@@ -76,14 +77,20 @@ class GroupCard extends StatelessWidget {
                 children: [
                   Text(
                     groupName,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(fontSize: 14),
                   ),
                   const SizedBox(height: 4),
                   Row(
                     children: [
                       Text(
                         memberCount,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 12),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(fontSize: 12),
                       ),
                       SizedBox(
                         width: 5,
@@ -98,7 +105,10 @@ class GroupCard extends StatelessWidget {
                       const SizedBox(width: 8),
                       Text(
                         amount,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 12),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(fontSize: 12),
                       ),
                       SizedBox(
                         width: 5,
@@ -114,10 +124,12 @@ class GroupCard extends StatelessWidget {
                   ),
                 ],
               ),
-              if (!isCompleted)
+              if (!isCompleted && isAdmin)
+
                 IconButton(
                   style: IconButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     shape: ContinuousRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                       side: BorderSide(width: 1, color: Colors.grey.shade600),
@@ -127,7 +139,8 @@ class GroupCard extends StatelessWidget {
                   icon: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.person_outline_outlined, size: 20, color: Colors.black),
+                      const Icon(Icons.person_outline_outlined,
+                          size: 20, color: Colors.black),
                       const SizedBox(width: 8),
                       Text(
                         'invite'.tr,
@@ -142,9 +155,10 @@ class GroupCard extends StatelessWidget {
                 ),
               if (!isCompleted)
                 InkWell(
-                    onTap: () {},
-                    child: Text('active'.tr,
-                        style: Theme.of(context).textTheme.bodySmall))
+                  onTap: () {},
+                  child: Text('active'.tr,
+                      style: Theme.of(context).textTheme.bodySmall),
+                )
               else
                 Text(
                   'complete'.tr,
@@ -163,7 +177,7 @@ class GroupCard extends StatelessWidget {
               if (!isCompleted)
                 _infoColumn('next_payment'.tr, nextPayment, context,
                     isBold: true),
-              if (!isCompleted)
+              if (!isCompleted && isAdmin)
                 _infoColumn("current_receiver".tr, currentReceiver, context,
                     isBold: true),
               if (isCompleted)
@@ -176,7 +190,8 @@ class GroupCard extends StatelessWidget {
     );
   }
 
-  Widget _infoColumn(String title, String value, BuildContext context, {bool isBold = false}) {
+  Widget _infoColumn(String title, String value, BuildContext context,
+      {bool isBold = false}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
