@@ -18,9 +18,12 @@ class CreateGroupScreen extends StatefulWidget {
 }
 
 class _CreateGroupScreenState extends State<CreateGroupScreen> {
-  final GroupCreateController _groupCreateController = Get.put(GroupCreateController());
-  final ActiveServiceController _activeController = Get.put(ActiveServiceController());
-  final CompleteServiceController _completeController = Get.put(CompleteServiceController());
+  final GroupCreateController _groupCreateController =
+      Get.put(GroupCreateController());
+  final ActiveServiceController _activeController =
+      Get.put(ActiveServiceController());
+  final CompleteServiceController _completeController =
+      Get.put(CompleteServiceController());
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -28,7 +31,8 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
   final TextEditingController _amountTEController = TextEditingController();
   final TextEditingController _frequencyTEController = TextEditingController();
   final TextEditingController _maximumTEController = TextEditingController();
-  final TextEditingController _descriptionNameTEController = TextEditingController();
+  final TextEditingController _descriptionNameTEController =
+      TextEditingController();
   final TextEditingController _acceptCodeTEController = TextEditingController();
 
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
@@ -45,7 +49,8 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
 
   void getUserRole() async {
     final uid = _auth.currentUser!.uid;
-    final snapshot = await FirebaseDatabase.instance.ref('users/$uid/role').get();
+    final snapshot =
+        await FirebaseDatabase.instance.ref('users/$uid/role').get();
     if (snapshot.exists) {
       userRole.value = snapshot.value.toString();
     } else {
@@ -70,14 +75,19 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                 TextFormField(
                   controller: _groupNameTEController,
                   decoration: InputDecoration(hintText: 'enter_group_name'.tr),
-                  validator: (value) => validateField(value: value, fieldType: "Group"),
+                  validator: (value) =>
+                      validateField(value: value, fieldType: "Group"),
                 ),
                 const SizedBox(height: 15),
                 Row(
                   children: [
-                    Expanded(child: Text("contrubution_amount".tr, style: _titleStyle(context))),
+                    Expanded(
+                        child: Text("contrubution_amount".tr,
+                            style: _titleStyle(context))),
                     const SizedBox(width: 20),
-                    Expanded(child: Text("frequency".tr, style: _titleStyle(context))),
+                    Expanded(
+                        child:
+                            Text("frequency".tr, style: _titleStyle(context))),
                   ],
                 ),
                 const SizedBox(height: 10),
@@ -87,20 +97,27 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                       child: TextFormField(
                         controller: _amountTEController,
                         decoration: InputDecoration(hintText: "\$ amount".tr),
-                        validator: (value) => validateField(value: value, fieldType: "amount"),
+                        validator: (value) =>
+                            validateField(value: value, fieldType: "amount"),
                         keyboardType: TextInputType.number,
                       ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: DropdownButtonFormField<String>(
-                        value: _frequencyTEController.text.isEmpty ? null : _frequencyTEController.text,
-                        decoration: InputDecoration(hintText: "select_frequency".tr),
-                        items: _frequencies.map((frequency) => DropdownMenuItem(
-                          value: frequency,
-                          child: Text(frequency),
-                        )).toList(),
-                        validator: (value) => validateField(value: value, fieldType: "Frequency"),
+                        value: _frequencyTEController.text.isEmpty
+                            ? null
+                            : _frequencyTEController.text,
+                        decoration:
+                            InputDecoration(hintText: "select_frequency".tr),
+                        items: _frequencies
+                            .map((frequency) => DropdownMenuItem(
+                                  value: frequency,
+                                  child: Text(frequency),
+                                ))
+                            .toList(),
+                        validator: (value) =>
+                            validateField(value: value, fieldType: "Frequency"),
                         onChanged: (value) {
                           setState(() {
                             _frequencyTEController.text = value!;
@@ -114,19 +131,21 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                 Text("maximum_members".tr, style: _titleStyle(context)),
                 TextFormField(
                   controller: _maximumTEController,
-                  decoration: InputDecoration(hintText: "enter_maximum_members".tr),
-                  validator: (value) => validateField(value: value, fieldType: "member"),
+                  decoration:
+                      InputDecoration(hintText: "enter_maximum_members".tr),
+                  validator: (value) =>
+                      validateField(value: value, fieldType: "member"),
                   keyboardType: TextInputType.number,
                 ),
                 const SizedBox(height: 15),
                 Text("description".tr, style: _titleStyle(context)),
                 TextFormField(
                   controller: _descriptionNameTEController,
-                  decoration: InputDecoration(hintText: "group_description (optional)".tr),
+                  decoration: InputDecoration(
+                      hintText: "group_description (optional)".tr),
                   maxLines: 4,
                 ),
-
-                const SizedBox(height: 5010),
+                const SizedBox(height: 50),
                 SizedBox(
                   width: double.infinity,
                   child: Obx(() {
@@ -136,16 +155,20 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                       return ElevatedButton(
                         onPressed: () {
                           if (_globalKey.currentState!.validate()) {
-                            _groupCreateController.groupCreate(
+                            _groupCreateController
+                                .groupCreate(
                               adminUserId: _auth.currentUser!.uid,
                               groupName: _groupNameTEController.text.trim(),
-                              contributionAmount: int.parse(_amountTEController.text.trim()),
+                              contributionAmount:
+                                  int.parse(_amountTEController.text.trim()),
                               frequency: _frequencyTEController.text.trim(),
-                              maxMembers: int.parse(_maximumTEController.text.trim()),
-                              description: _descriptionNameTEController.text.trim(),
-
+                              maxMembers:
+                                  int.parse(_maximumTEController.text.trim()),
+                              description:
+                                  _descriptionNameTEController.text.trim(),
                               context: context,
-                            ).then((_) {
+                            )
+                                .then((_) {
                               Get.to(() => const ManageGroupScreen());
                             });
                           }
@@ -160,7 +183,6 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
           ),
         ),
       ),
-
       floatingActionButton: Obx(() {
         final role = userRole.value?.toLowerCase();
         const List<String> adminRoles = ['admin', 'superboss', 'head_of_dept'];
@@ -179,19 +201,20 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                   ..._completeController.completedGroups,
                 ];
 
-
                 final matchedGroup = allGroups.firstWhereOrNull(
-                      (group) => group== code,
+                  (group) => group == code,
                 );
 
                 if (matchedGroup != null) {
-                  final isActive = matchedGroup.status.toLowerCase() == 'active';
+                  final isActive =
+                      matchedGroup.status.toLowerCase() == 'active';
                   isActiveSelected.value = isActive;
 
                   if (isActive) {
                     _activeController.activeGroups.assignAll([matchedGroup]);
                   } else {
-                    _completeController.completedGroups.assignAll([matchedGroup]);
+                    _completeController.completedGroups
+                        .assignAll([matchedGroup]);
                   }
 
                   showSnackBarMessage(context, "Group found!");
@@ -201,7 +224,6 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
               },
             );
           },
-
           icon: const Icon(Icons.check),
           label: const Text(
             "Accept",
@@ -209,7 +231,8 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
           ),
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColor.buttonColor,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           ),
         );
       }),
@@ -218,9 +241,9 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
 
   TextStyle _titleStyle(BuildContext context) {
     return Theme.of(context).textTheme.bodyMedium!.copyWith(
-      fontSize: 14,
-      fontWeight: FontWeight.w600,
-    );
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+        );
   }
 
   String? validateField({required String? value, required String fieldType}) {
