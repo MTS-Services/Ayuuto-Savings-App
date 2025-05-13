@@ -17,7 +17,6 @@ class _ResetPasswordState extends State<ResetPassword> {
       TextEditingController();
   final TextEditingController _confirmPasswordETController =
       TextEditingController();
-  final TextEditingController _emailTeController = TextEditingController();
   final FirebaseService _firebaseService = FirebaseService();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
@@ -37,7 +36,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   height: 200,
                 ),
                 Text(
-                  "Reset Your Password",
+                  "reset_your_password".tr,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 SizedBox(
@@ -45,23 +44,23 @@ class _ResetPasswordState extends State<ResetPassword> {
                 ),
                 TextFormField(
                   controller: _newPasswordETController,
-                  decoration: InputDecoration(hintText: "new Password"),
+                  decoration: InputDecoration(hintText: "new_password".tr),
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 TextFormField(
                   controller: _confirmPasswordETController,
-                  decoration: InputDecoration(hintText: "Confirm Password"),
+                  decoration: InputDecoration(hintText: "confirm_password".tr),
                 ),
                 SizedBox(height: 160),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      resetPassword();
+                      // resetPassword();
                     },
-                    child: Text("Sign In"),
+                    child: Text('sign_in'.tr),
                   ),
                 ),
               ],
@@ -88,18 +87,15 @@ class _ResetPasswordState extends State<ResetPassword> {
       }
       bool isPasswordChanged = await _firebaseService.changePassword(
         currentPassword: _newPasswordETController.text,
-        newPassword: _confirmPasswordETController.text, email:
-      _emailTeController.text.trim(),
+        newPassword: _confirmPasswordETController.text,
       );
       if (isPasswordChanged) {
         showSnackBarMessage(context, 'Password changed successfully!');
         Get.to(() => SignInScreen());
       }
-      if(!isPasswordChanged){
-
+      if (!isPasswordChanged) {
         showSnackBarMessage(
             context, 'Password change failed. Please try again.');
-
       }
     } catch (e) {
       showSnackBarMessage(context, 'Error: ${e.toString()}');

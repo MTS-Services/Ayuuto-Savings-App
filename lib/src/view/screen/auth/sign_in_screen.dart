@@ -17,15 +17,17 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final FirebaseService _firebaseService = FirebaseService();
 
-  late TextEditingController _emailETController = TextEditingController();
-  late TextEditingController _passwordETController = TextEditingController();
+  late final TextEditingController _emailETController = TextEditingController();
+  late final TextEditingController _passwordETController =
+      TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  bool _isLoading = false;
 
-@override
+  @override
   void initState() {
-    _emailETController.text = "shakib501886@gmail.com";
-    _passwordETController.text = "shakib0147@";
     super.initState();
+    _emailETController.text = "maktechsolutioncorporate@gmail.com";
+    _passwordETController.text = "mdt@123@";
   }
 
   @override
@@ -44,7 +46,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 150,
                 ),
                 Text(
-                  "Sign In",
+                  "sign_in".tr,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 SizedBox(
@@ -52,7 +54,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 TextFormField(
                   controller: _emailETController,
-                  decoration: InputDecoration(hintText: "Email"),
+                  decoration: InputDecoration(hintText: 'email'.tr),
                   validator: (value) =>
                       validateField(value: value, fieldType: 'email'),
                 ),
@@ -64,7 +66,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 TextFormField(
                   controller: _passwordETController,
-                  decoration: InputDecoration(hintText: "Password"),
+                  decoration: InputDecoration(hintText: 'password'.tr),
                   validator: (value) =>
                       validateField(value: value, fieldType: 'password'),
                 ),
@@ -76,7 +78,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         Get.to(() => EmailVerificationScreen());
                       },
                       child: Text(
-                        "Forgot password?",
+                        'forgot_password'.tr,
                         style: TextStyle(color: Colors.blue),
                       ),
                     ),
@@ -88,21 +90,30 @@ class _SignInScreenState extends State<SignInScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
-                      if (_globalKey.currentState!.validate()) {
-                        signIn();
-
-                      }
-
-                    },
-                    child: Text("Sing In"),
+                    onPressed: _isLoading
+                        ? null
+                        : () {
+                            if (_globalKey.currentState!.validate()) {
+                              signIn();
+                            }
+                          },
+                    child: _isLoading
+                        ? SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2,
+                            ),
+                          )
+                        : Text('sign_in'.tr),
                   ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't an account?",
+                      'dont_have_account'.tr,
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall!
@@ -113,7 +124,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         Get.to(() => SignUpScreen());
                       },
                       child: Text(
-                        "Sing Up",
+                        'sign_up'.tr,
                         style: TextStyle(color: Colors.blue),
                       ),
                     )
@@ -135,6 +146,9 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void signIn() async {
+    setState(() {
+      _isLoading = true;
+    });
     try {
       bool isSignedIn = await _firebaseService.signInUser(
         email: _emailETController.text.trim(),
@@ -142,8 +156,25 @@ class _SignInScreenState extends State<SignInScreen> {
       );
 
       if (isSignedIn) {
-        showSnackBarMessage(context, "Login successful!");
-        Get.to(()=>NavigationMenu());
+        final user = _firebaseService.auth.currentUser;
+
+        if (user != null) {
+          final userDoc = await _firebaseService.firestore
+              .collection('users')
+              .doc(user.uid)
+              .get();
+
+          final data = userDoc.data();
+          print("Firestore data: $data");
+          final role = userDoc.data()?['role'] ?? 'member';
+
+          showSnackBarMessage(context, "Login successful!");
+          print("Signed in as: ${user.email}");
+          print(
+              "Retrieved role from Firestore: $role (${userDoc.data()?['role']})");
+
+          Get.offAll(() => NavigationMenu(userRole: role));
+        }
       } else {
         showSnackBarMessage(
             context, "Login failed. Please check your credentials.");

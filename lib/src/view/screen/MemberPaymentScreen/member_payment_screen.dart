@@ -3,6 +3,7 @@ import 'package:ayuuto_savings_app/src/view/screen/MemberPaymentScreen/widgets/h
 import 'package:ayuuto_savings_app/src/view/screen/MemberPaymentScreen/widgets/pay_container.dart';
 import 'package:ayuuto_savings_app/src/view/screen/MemberPaymentScreen/widgets/quick_pay_container.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MemberPaymentScreen extends StatelessWidget {
   const MemberPaymentScreen({super.key});
@@ -10,7 +11,7 @@ class MemberPaymentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Payment'),
+      appBar: CustomAppBar(title: 'payment'.tr),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -22,17 +23,17 @@ class MemberPaymentScreen extends StatelessWidget {
                 children: [
                   PayContainer(
                     num: '\$500.00',
-                    text: 'Upcomming Payment',
+                    text: 'upcoming_payment'.tr,
                   ),
                   PayContainer(
                     num: '\$499.00',
-                    text: 'Total Contributed',
+                    text: 'total_contributed'.tr,
                   ),
                 ],
               ),
               const SizedBox(height: 20),
               Text(
-                'Quick Pay',
+                'quick_pay'.tr,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
@@ -55,7 +56,7 @@ class MemberPaymentScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Text(
-                'Payment History',
+                'payment_history'.tr,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,

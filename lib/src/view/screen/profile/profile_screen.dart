@@ -1,14 +1,13 @@
-import 'package:ayuuto_savings_app/core/app_colors.dart';
 import 'package:ayuuto_savings_app/src/model/firebase/firebase_service.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Individual%20Group/widget/custom_appbar.dart';
-import 'package:ayuuto_savings_app/src/view/screen/profile/widget/add_card_number.dart';
 import 'package:ayuuto_savings_app/src/view/screen/profile/widget/payment_method_Section.dart';
 import 'package:ayuuto_savings_app/src/view/screen/profile/widget/profile_header.dart';
 import 'package:ayuuto_savings_app/src/view/screen/profile/widget/profile_info_card_widget.dart';
 import 'package:ayuuto_savings_app/src/view/widget/snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
+import '../auth/sign_in_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -27,7 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "Profile"),
+      appBar: CustomAppBar(title: "profile".tr),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -37,20 +36,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
               fullName: fullName,
               email: email,
               imageUrl:
-                  'https://plus.unsplash.com/premium_photo-1689977807477-a579eda91fa2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              'https://plus.unsplash.com/premium_photo-1689977807477-a579eda91fa2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             ),
             const SizedBox(height: 30),
             Text(
-              "Account Information",
+              'acount_information'.tr,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
             ),
             const SizedBox(height: 10),
             _buildInfoTile(
               icon: Icons.person_outline,
-              title: "Full Name",
+              title: 'full_name'.tr,
               value: fullName,
               onEdit: () => _editField("Full Name", fullName, (newValue) {
                 setState(() {
@@ -61,7 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildDivider(),
             _buildInfoTile(
               icon: Icons.email_outlined,
-              title: "Email",
+              title: 'email'.tr,
               value: email,
               onEdit: () => _editField("Email", email, (newValue) {
                 setState(() {
@@ -72,7 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildDivider(),
             _buildInfoTile(
               icon: Icons.phone_outlined,
-              title: "Phone Number",
+              title: 'phone_number'.tr,
               value: phoneNumber,
               onEdit: () => _editField("Phone Number", phoneNumber, (newValue) {
                 setState(() {
@@ -86,7 +85,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 Expanded(
                   child: ProfileInfoCard(
-                    title: " Group Joined",
+                    title: 'group_joined'.tr,
                     count: "2",
                     icon: Icons.group_add_outlined,
                   ),
@@ -94,7 +93,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(width: 16),
                 Expanded(
                   child: ProfileInfoCard(
-                    title: "Total pay",
+                    title: 'total_pay'.tr,
                     count: "\$200",
                     icon: Icons.group_add_outlined,
                   ),
@@ -109,9 +108,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white, backgroundColor: Colors.white),
-              onPressed: () {
-                _firebaseService.logOutUser();
-                Get.back();
+              onPressed: () async {
+                bool success = await _firebaseService.logOutUser();
+                if (success) {
+                   Get.to(()=>SignInScreen());
+                } else {
+                  showSnackBarMessage(context, 'Logout failed. Please try again.');
+                }
               },
               child: Row(
                 children: [
@@ -120,7 +123,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: Colors.redAccent,
                   ),
                   Text(
-                    "Logout",
+                    'logout'.tr,
                     style: TextStyle(color: Colors.redAccent),
                   )
                 ],
@@ -130,78 +133,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 10,
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildProfileHeader() {
-    return Card(
-      elevation: 2,
-      color: AppColor.themeColor,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CircleAvatar(
-              radius: 35,
-              backgroundImage: NetworkImage(
-                  'https://plus.unsplash.com/premium_photo-1689977807477-a579eda91fa2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
-            ),
-            const SizedBox(width: 20),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    fullName,
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.black87,
-                        ),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    email,
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          color: Colors.grey.shade700,
-                          fontSize: 14,
-                        ),
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      _buildBadge("Member"),
-                      const SizedBox(width: 10),
-                      _buildBadge("Verified", color: Colors.green),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBadge(String label, {Color color = Colors.blueGrey}) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(5),
-        border: Border.all(color: color),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-          fontSize: 12,
-          color: color,
-          fontWeight: FontWeight.w500,
         ),
       ),
     );
@@ -219,9 +150,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       subtitle: Text(
         value,
         style: Theme.of(context).textTheme.bodySmall!.copyWith(
-              fontWeight: FontWeight.w500,
-              fontSize: 18,
-            ),
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+        ),
       ),
       trailing: Icon(Icons.edit, color: Colors.grey),
       onTap: onEdit,
@@ -234,8 +165,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void _editField(String title, String currentValue, Function(String) onSave) {
     TextEditingController controller =
-        TextEditingController(text: currentValue);
-
+    TextEditingController(text: currentValue);
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -256,7 +186,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               borderRadius: BorderRadius.circular(12),
             ),
             contentPadding:
-                const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           ),
         ),
         actions: [

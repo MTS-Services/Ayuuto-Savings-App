@@ -1,11 +1,12 @@
+import 'package:ayuuto_savings_app/src/model/get_group_model/get_group_model.dart';
 import 'package:ayuuto_savings_app/src/view/screen/group_details/widget/custome_member_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../Individual Group/widget/custom_appbar.dart';
 import 'package:ayuuto_savings_app/src/view/screen/group_details/widget/custom_container_widget.dart';
 
 class GroupDetailsScreen extends StatefulWidget {
-  const GroupDetailsScreen({super.key});
+  final GetGroupModel group;
+  const GroupDetailsScreen({super.key, required this.group});
 
   @override
   State<GroupDetailsScreen> createState() => _GroupDetailsScreenState();
@@ -13,12 +14,6 @@ class GroupDetailsScreen extends StatefulWidget {
 
 class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
   List<String> labels = ['Members', 'Current Round', 'Monthly Amount'];
-
-  Map<String, dynamic> groupDetails = {
-    'member': 10,
-    'currentRound': '5/10',
-    'monthlyAmount': 500,
-  };
 
   @override
   Widget build(BuildContext context) {
@@ -33,29 +28,28 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Group Name",
+              widget.group.groupName,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             SizedBox(
               height: 100,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: labels.length,
-                shrinkWrap: true,
                 itemBuilder: (context, index) {
                   String label = labels[index];
                   String value = "";
 
                   if (label == 'Members') {
-                    value = groupDetails['member'].toString();
+                    value = widget.group.totalMembers.toString();
                   } else if (label == 'Current Round') {
-                    value = groupDetails['currentRound'].toString();
+                    value = widget.group.roundInfo;
                   } else if (label == 'Monthly Amount') {
-                    value = "\$${groupDetails['monthlyAmount'].toString()}";
+                    value = "\$${widget.group.contributionAmount}";
                   }
 
                   return Padding(
@@ -72,7 +66,7 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
                           color: Colors.grey.shade300,
                           blurRadius: 2,
                           spreadRadius: 2,
-                          offset: Offset(2, 2),
+                          offset: const Offset(2, 2),
                         ),
                       ],
                     ),
@@ -80,36 +74,43 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
                 },
               ),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Text(
               "Group Members",
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
             ),
+            const SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
-                itemCount: 5,
+                itemCount: widget.group.members.length,
                 itemBuilder: (context, index) {
+                  final member = widget.group.members[index];
+
                   return Card(
                     elevation: 1,
                     color: Colors.white,
                     child: CustomMemberTile(
-                      memberName: "John Doe",
-                      joinDate: "2024-01-01",
-                      position: "1",
-                      status: "Active",
-                      statusColor: Colors.green,
+                      memberName:  member['name'] ?? 'Unknown',
+                      joinDate: member['joinDate'] ?? 'N/A',
+                      position: '${index + 1}',
+                      status: member['status'] ?? 'Pending',
+                      statusColor: (member['status'] == 'Active')
+                          ? Colors.green
+                          : Colors.grey,
                       leadingAvatar: CircleAvatar(
                         backgroundImage: NetworkImage(
-                            'https://plus.unsplash.com/premium_photo-1689977807477-a579eda91fa2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+                          member['imageUrl'] ??
+                              'https://via.placeholder.com/150',
+                        ),
                       ),
                     ),
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
       ),

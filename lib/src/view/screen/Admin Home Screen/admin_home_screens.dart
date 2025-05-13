@@ -68,12 +68,12 @@ class AdminHomeScreens extends StatelessWidget {
                       children: [
                         CustomCard(
                           icon: Iconsax.profile_2user,
-                          text: 'Total Group',
+                          text: 'total_groups'.tr,
                           num: '8',
                         ),
                         CustomCard(
                           icon: Iconsax.user,
-                          text: 'Total Member',
+                          text: 'total_members'.tr,
                           num: '42',
                         ),
                       ],
@@ -83,12 +83,12 @@ class AdminHomeScreens extends StatelessWidget {
                       children: [
                         CustomCard(
                           icon: Iconsax.calendar,
-                          text: 'Upcomming \nPayments',
+                          text: 'upcoming_payments'.tr,
                           num: '12',
                         ),
                         CustomCard(
                           icon: Iconsax.clock,
-                          text: 'Complete \nPayments',
+                          text: 'completed_payments'.tr,
                           num: '3',
                         ),
                       ],
@@ -100,11 +100,11 @@ class AdminHomeScreens extends StatelessWidget {
                 ),
                 //Quick Actions Tab
                 Text(
-                  'Quick Actions',
+                  'quick_actions'.tr,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: AppColor.buttonColor,
+                    color: Colors.black,
                   ),
                 ),
                 SizedBox(
@@ -117,17 +117,17 @@ class AdminHomeScreens extends StatelessWidget {
                         onTab: () {
                           Get.to(() => CreateGroupScreen());
                         },
-                        text: 'Create Group',
+                        text: 'create_group'.tr,
                         icon: Iconsax.add_square),
                     QuickActionContainer(
                         onTab: () {
                           Get.to(() => ManageGroupScreen());
                         },
-                        text: 'View Groups',
+                        text: 'view_groups'.tr,
                         icon: Iconsax.profile_2user),
                     QuickActionContainer(
                         onTab: () {},
-                        text: 'Manage\nPayments',
+                        text: 'manage_payments'.tr,
                         icon: Iconsax.dollar_circle),
                   ],
                 ),
@@ -135,7 +135,7 @@ class AdminHomeScreens extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  'Recent Activities',
+                  'recent_activity'.tr,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

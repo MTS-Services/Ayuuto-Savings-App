@@ -41,48 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBRDfUZu99taO9eQx-m7H5t3LgmUcNNcrU',
-    appId: '1:863070520778:web:59c36189041c447753bb33',
-    messagingSenderId: '863070520778',
-    projectId: 'ayuutosavingsapp',
-    authDomain: 'ayuutosavingsapp.firebaseapp.com',
-    storageBucket: 'ayuutosavingsapp.firebasestorage.app',
-    measurementId: 'G-LM4R5EZ0XT',
+    apiKey: 'AIzaSyDs8G7fNbN3YlX__zsh9gOG7rVX2yCgl34',
+    appId: '1:818031553895:web:eb1578bcbe71a0a27c93c2',
+    messagingSenderId: '818031553895',
+    projectId: 'ayuuto-savings-app',
+    authDomain: 'ayuuto-savings-app.firebaseapp.com',
+    storageBucket: 'ayuuto-savings-app.firebasestorage.app',
+    measurementId: 'G-L5R19CEC86',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDQWiDa6bX_DmDY0jOXZIELxuVNdL4BVeA',
-    appId: '1:863070520778:android:8823f4e96216e44053bb33',
-    messagingSenderId: '863070520778',
-    projectId: 'ayuutosavingsapp',
-    storageBucket: 'ayuutosavingsapp.firebasestorage.app',
+    apiKey: 'AIzaSyDDf6O_hj6S25b6vuQWLXbgJDrbgQCYQ_8',
+    appId: '1:818031553895:android:589a6498aa7df84a7c93c2',
+    messagingSenderId: '818031553895',
+    projectId: 'ayuuto-savings-app',
+    storageBucket: 'ayuuto-savings-app.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAdA1R8EUeU1MkSoDhnQ2AhsPXzVtzOlsg',
-    appId: '1:863070520778:ios:62dca24fd46b0d2253bb33',
-    messagingSenderId: '863070520778',
-    projectId: 'ayuutosavingsapp',
-    storageBucket: 'ayuutosavingsapp.firebasestorage.app',
+    apiKey: 'AIzaSyCowEhe5DNqW_Ea2gCMagQv_t972mqXXZc',
+    appId: '1:818031553895:ios:81f78ab665be1f177c93c2',
+    messagingSenderId: '818031553895',
+    projectId: 'ayuuto-savings-app',
+    storageBucket: 'ayuuto-savings-app.firebasestorage.app',
     iosBundleId: 'com.example.ayuutoSavingsApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAdA1R8EUeU1MkSoDhnQ2AhsPXzVtzOlsg',
-    appId: '1:863070520778:ios:62dca24fd46b0d2253bb33',
-    messagingSenderId: '863070520778',
-    projectId: 'ayuutosavingsapp',
-    storageBucket: 'ayuutosavingsapp.firebasestorage.app',
+    apiKey: 'AIzaSyCowEhe5DNqW_Ea2gCMagQv_t972mqXXZc',
+    appId: '1:818031553895:ios:81f78ab665be1f177c93c2',
+    messagingSenderId: '818031553895',
+    projectId: 'ayuuto-savings-app',
+    storageBucket: 'ayuuto-savings-app.firebasestorage.app',
     iosBundleId: 'com.example.ayuutoSavingsApp',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBRDfUZu99taO9eQx-m7H5t3LgmUcNNcrU',
-    appId: '1:863070520778:web:b14bef00f63f95a053bb33',
-    messagingSenderId: '863070520778',
-    projectId: 'ayuutosavingsapp',
-    authDomain: 'ayuutosavingsapp.firebaseapp.com',
-    storageBucket: 'ayuutosavingsapp.firebasestorage.app',
-    measurementId: 'G-LKSJGTFV37',
+    apiKey: 'AIzaSyDs8G7fNbN3YlX__zsh9gOG7rVX2yCgl34',
+    appId: '1:818031553895:web:3878fa3b7d2b09bc7c93c2',
+    messagingSenderId: '818031553895',
+    projectId: 'ayuuto-savings-app',
+    authDomain: 'ayuuto-savings-app.firebaseapp.com',
+    storageBucket: 'ayuuto-savings-app.firebasestorage.app',
+    measurementId: 'G-4KTBVGB1HQ',
   );
+
 }

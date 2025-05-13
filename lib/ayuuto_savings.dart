@@ -1,3 +1,4 @@
+import 'package:ayuuto_savings_app/src/localization/language.dart';
 import 'package:ayuuto_savings_app/src/view/screen/auth/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,9 @@ class AyuutoSavings extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: OnboardingScreen(),
+      locale: Locale('en', 'US'),
+      translations: Language(),
+      fallbackLocale: Locale('en', 'US'),
       theme: ThemeData(
         scaffoldBackgroundColor: AppColor.themeColor,
         textTheme: _buildTextTheme(),

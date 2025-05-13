@@ -1,5 +1,7 @@
 import 'package:ayuuto_savings_app/core/app_colors.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/admin_home_screens.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MemberPaymentScreen/member_payment_screen.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MyGroupScreen/my_group.dart';
 import 'package:ayuuto_savings_app/src/view/screen/Payment_Screen/payment_screen.dart';
 import 'package:ayuuto_savings_app/src/view/screen/manage_group/manage_group_screen.dart';
 import 'package:ayuuto_savings_app/src/view/screen/profile/profile_screen.dart';
@@ -9,13 +11,14 @@ import 'package:iconsax_flutter/iconsax_flutter.dart' show Iconsax;
 
 // Move testMembers here (GLOBAL)
 
-
 class NavigationMenu extends StatelessWidget {
-  const NavigationMenu({super.key});
+  final String userRole;
+
+  const NavigationMenu({super.key, required this.userRole});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(NavigationController());
+    final controller = Get.put(NavigationController(userRole));
 
     return Scaffold(
       bottomNavigationBar: Obx(
@@ -26,13 +29,13 @@ class NavigationMenu extends StatelessWidget {
           onDestinationSelected: (value) =>
               controller.selectedIndex.value = value,
           backgroundColor: AppColor.buttonColor,
-              labelTextStyle: WidgetStateProperty.all(
-                const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
-                ),
-              ),
+          labelTextStyle: WidgetStateProperty.all(
+            const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
+          ),
           indicatorColor: Colors.white,
           destinations: [
             NavigationDestination(
@@ -42,7 +45,7 @@ class NavigationMenu extends StatelessWidget {
                     ? Colors.black
                     : Colors.white,
               ),
-              label: 'Home',
+              label: 'home'.tr,
             ),
             NavigationDestination(
               icon: Icon(
@@ -51,7 +54,7 @@ class NavigationMenu extends StatelessWidget {
                     ? Colors.black
                     : Colors.white,
               ),
-              label: 'Groups',
+              label: 'groups'.tr,
             ),
             NavigationDestination(
               icon: Icon(
@@ -60,7 +63,7 @@ class NavigationMenu extends StatelessWidget {
                     ? Colors.black
                     : Colors.white,
               ),
-              label: 'Payments',
+              label: 'payments'.tr,
             ),
             NavigationDestination(
               icon: Icon(
@@ -69,7 +72,7 @@ class NavigationMenu extends StatelessWidget {
                     ? Colors.black
                     : Colors.white,
               ),
-              label: 'Profile',
+              label: 'profile'.tr,
             ),
           ],
         ),
@@ -80,12 +83,21 @@ class NavigationMenu extends StatelessWidget {
 }
 
 class NavigationController extends GetxController {
-  Rx<int> selectedIndex = 0.obs;
+  final Rx<int> selectedIndex = 0.obs;
+  final List<Widget> screens;
 
-  final screens = [
-    AdminHomeScreens(),
-    ManageGroupScreen(),
-    PaymentScreen(),
-    ProfileScreen(),
-  ];
+  NavigationController(String role)
+      : screens = role == 'admin'
+            ? [
+                AdminHomeScreens(),
+                ManageGroupScreen(),
+                PaymentScreen(),
+                ProfileScreen(),
+              ]
+            : [
+                MyGroupScreen(),
+                ManageGroupScreen(),
+                MemberPaymentScreen(),
+                ProfileScreen(),
+              ];
 }
