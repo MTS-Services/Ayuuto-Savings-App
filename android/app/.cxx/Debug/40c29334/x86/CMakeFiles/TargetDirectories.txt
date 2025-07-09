@@ -1,0 +1,2 @@
+C:/Users/remon/StudioProjects/Ayuuto-Savings-App/android/app/.cxx/Debug/40c29334/x86/CMakeFiles/edit_cache.dir
+C:/Users/remon/StudioProjects/Ayuuto-Savings-App/android/app/.cxx/Debug/40c29334/x86/CMakeFiles/rebuild_cache.dir
