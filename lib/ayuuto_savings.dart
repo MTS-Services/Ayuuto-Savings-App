@@ -1,4 +1,12 @@
+import 'package:ayuuto_savings_app/src/view/screen/Admin%20Home%20Screen/admin_home_screens.dart';
+import 'package:ayuuto_savings_app/src/view/screen/AllUserScreen/all_user_screen.dart';
+import 'package:ayuuto_savings_app/src/view/screen/Individual%20Group/individual_group.dart';
+import 'package:ayuuto_savings_app/src/view/screen/MemberPaymentScreen/member_payment_screen.dart';
+import 'package:ayuuto_savings_app/src/view/screen/Payment_Screen/payment_screen.dart';
 import 'package:ayuuto_savings_app/src/view/screen/auth/onboarding_screen.dart';
+import 'package:ayuuto_savings_app/src/view/screen/create_group/create_group_screen.dart';
+import 'package:ayuuto_savings_app/src/view/screen/group_details/group_details_screen.dart';
+import 'package:ayuuto_savings_app/src/view/screen/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
